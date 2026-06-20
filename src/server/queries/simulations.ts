@@ -49,13 +49,6 @@ export async function getStudentSimulation(userId: string, simulationId: string)
         include: {
           exercise: {
             include: {
-              skill: {
-                select: {
-                  id: true,
-                  name: true,
-                  slug: true
-                }
-              },
               mission: {
                 include: {
                   module: {

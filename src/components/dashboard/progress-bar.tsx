@@ -17,9 +17,9 @@ export function ProgressBar({ value, label, className }: ProgressBarProps) {
           <span className="text-slate-500">{safeValue}%</span>
         </div>
       ) : null}
-      <div className="h-2 overflow-hidden rounded-full bg-slate-200">
+      <div className="h-2.5 overflow-hidden rounded-full bg-slate-200">
         <div
-          className={cn("h-full rounded-full bg-emerald-600 transition-all")}
+          className={cn("h-full rounded-full bg-emerald-600 shadow-sm shadow-emerald-700/30 transition-all")}
           style={{ width: `${safeValue}%` }}
         />
       </div>

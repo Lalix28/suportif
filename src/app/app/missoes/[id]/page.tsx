@@ -50,15 +50,15 @@ export default async function MissionPage({ params }: { params: Promise<{ id: st
             ))}
           </div>
           {progress ? (
-            <Card>
-              <CardContent className="flex flex-wrap gap-3 p-4 text-sm text-slate-700">
-                <span>
+            <Card className="bg-white">
+              <CardContent className="grid gap-3 p-4 text-sm text-slate-700 sm:grid-cols-3">
+                <span className="rounded-md bg-slate-50 px-3 py-2">
                   Domínio: <strong>{progress.masteryStatus}</strong>
                 </span>
-                <span>
+                <span className="rounded-md bg-slate-50 px-3 py-2">
                   Tentativas: <strong>{progress.attemptsCount}</strong>
                 </span>
-                <span>
+                <span className="rounded-md bg-slate-50 px-3 py-2">
                   Acertos únicos: <strong>{progress.correctCount}</strong>
                 </span>
               </CardContent>

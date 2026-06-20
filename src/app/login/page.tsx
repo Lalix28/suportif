@@ -17,7 +17,7 @@ export default async function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[linear-gradient(180deg,#f0fdf4_0%,#f8fafc_55%,#ffffff_100%)]">
+    <main className="min-h-screen bg-slate-50">
       <PublicHeader />
       <section className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-6xl gap-8 px-4 py-10 lg:grid-cols-[1fr_440px] lg:items-center">
         <div className="hidden space-y-5 lg:block">
@@ -25,11 +25,11 @@ export default async function LoginPage() {
             Ambiente demonstrativo
           </Badge>
           <h1 className="max-w-xl text-5xl font-black leading-tight text-slate-950">
-            Entre para estudar com dados reais do MVP.
+            Entre para continuar sua jornada de estudo.
           </h1>
           <p className="max-w-lg text-lg leading-8 text-slate-600">
-            O login consulta usuários reais do PostgreSQL, cria sessão em cookie httpOnly e direciona o usuário por
-            papel: aluno, tutor ou admin.
+            O acesso usa usuários persistidos no PostgreSQL e direciona cada perfil para a área certa:
+            aluno, tutor ou admin.
           </p>
         </div>
         <Card className="w-full border-emerald-100 bg-white shadow-xl shadow-emerald-900/10">
@@ -39,7 +39,7 @@ export default async function LoginPage() {
             </Badge>
             <CardTitle className="text-2xl">Entrar no ambiente</CardTitle>
             <p className="text-sm leading-6 text-slate-600">
-              Use uma conta demo local ou qualquer usuário cadastrado pelo seed.
+              Use uma conta local de demonstração ou qualquer usuário cadastrado pelo seed.
             </p>
           </CardHeader>
           <CardContent className="space-y-6">

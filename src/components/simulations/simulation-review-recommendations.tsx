@@ -1,7 +1,11 @@
 import Link from "next/link";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { SkillResultView } from "@/lib/simulations/presentation";
+import {
+  formatReviewDueText,
+  getSkillDisplayName,
+  type SkillResultView
+} from "@/lib/simulations/presentation";
 
 type SimulationReviewRecommendationsProps = {
   weakSkills: SkillResultView[];
@@ -42,15 +46,15 @@ export function SimulationReviewRecommendations({
                   {review.mission.module.track.title} · {review.mission.module.title}
                   {review.skill ? ` · ${review.skill.name}` : ""}
                 </p>
-                <p>Vence em {review.dueAt.toLocaleDateString("pt-BR")}</p>
+                <p className="text-emerald-800">{formatReviewDueText(review.dueAt)}</p>
               </div>
             ))}
           </div>
         ) : weakSkills.length > 0 ? (
           <div className="space-y-2 text-sm leading-6 text-emerald-950">
-            {weakSkills.slice(0, 4).map((skill) => (
-              <p key={skill.key}>
-                Revise <strong>{skill.label}</strong> antes de refazer o simulado.
+            {weakSkills.slice(0, 4).map((skill, index) => (
+              <p key={`${getSkillDisplayName(skill)}-${index}`}>
+                Revise <strong>{getSkillDisplayName(skill)}</strong> antes de refazer o simulado.
               </p>
             ))}
           </div>

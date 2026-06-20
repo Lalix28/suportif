@@ -17,10 +17,10 @@ export default async function StudentTracksPage() {
     <ProtectedShell user={user}>
       <div className="space-y-8">
         <section>
-          <Badge variant="secondary">Trilhas reais do banco</Badge>
-          <h1 className="mt-3 text-3xl font-bold text-slate-950">Minhas trilhas</h1>
-          <p className="mt-2 max-w-2xl text-slate-600">
-            Continue matrículas existentes ou inicie uma trilha pública demonstrativa.
+          <Badge variant="secondary">Trilhas salvas no banco</Badge>
+          <h1 className="mt-3 text-3xl font-black text-slate-950">Minhas trilhas</h1>
+          <p className="mt-2 max-w-2xl leading-7 text-slate-600">
+            Continue o que já começou ou escolha uma nova trilha pública demonstrativa para estudar em etapas.
           </p>
         </section>
 
@@ -45,7 +45,7 @@ export default async function StudentTracksPage() {
           ) : (
             <Card>
               <CardContent className="p-6 text-sm text-slate-600">
-                Nenhuma matrícula encontrada. Inicie uma trilha pública abaixo.
+                Você ainda não iniciou nenhuma trilha. Escolha uma opção pública abaixo para começar.
               </CardContent>
             </Card>
           )}
@@ -69,7 +69,7 @@ export default async function StudentTracksPage() {
                     <form action={startTrackAction}>
                       <input type="hidden" name="trackId" value={track.id} />
                       <Button type="submit" variant="secondary">
-                        Iniciar trilha
+                        Iniciar jornada
                       </Button>
                     </form>
                   }

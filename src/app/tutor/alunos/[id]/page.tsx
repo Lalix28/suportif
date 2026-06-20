@@ -12,7 +12,12 @@ import { TeacherNoteForm } from "@/components/teacher/teacher-note-form";
 import { TeacherNoteList } from "@/components/teacher/teacher-note-list";
 import { TutorSkillDifficultyList } from "@/components/teacher/tutor-skill-difficulty-list";
 import { requireRole } from "@/lib/auth/session";
-import { parseSkillResults } from "@/lib/simulations/presentation";
+import {
+  formatReviewDueText,
+  getReviewStatusLabel,
+  getSkillDisplayName,
+  parseSkillResults
+} from "@/lib/simulations/presentation";
 import { getTutorStudentDetail } from "@/server/queries/tutor";
 
 export const dynamic = "force-dynamic";
@@ -71,7 +76,7 @@ export default async function TutorStudentDetailPage({ params }: { params: Promi
                   <div className="mt-2 space-y-2">
                     {latestWeakSkills.slice(0, 3).map((skill) => (
                       <p key={skill.key} className="text-sm text-amber-950">
-                        {skill.label} · {skill.accuracy}%
+                        {getSkillDisplayName(skill)} · {skill.accuracy}%
                       </p>
                     ))}
                   </div>
@@ -84,21 +89,23 @@ export default async function TutorStudentDetailPage({ params }: { params: Promi
         <section className="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
           <Card>
             <CardHeader>
-              <CardTitle>Revisões pendentes</CardTitle>
+              <CardTitle>Revisões que merecem atenção</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               {detail.reviews.length > 0 ? (
                 detail.reviews.map((review) => (
                   <div key={review.id} className="rounded-md border bg-white p-3 text-sm">
                     <div className="flex flex-wrap gap-2">
-                      <Badge variant={review.status === "OVERDUE" ? "warning" : "outline"}>{review.status}</Badge>
-                      <Badge variant="secondary">{review.intervalDays} dia(s)</Badge>
+                      <Badge variant={review.status === "OVERDUE" ? "warning" : "outline"}>
+                        {getReviewStatusLabel(review.status)}
+                      </Badge>
+                      <Badge variant="secondary">{formatReviewDueText(review.dueAt)}</Badge>
                     </div>
                     <p className="mt-2 font-semibold text-slate-950">{review.mission.title}</p>
                     <p className="text-slate-600">
                       {review.mission.module.track.title} · {review.mission.module.title}
                     </p>
-                    <p className="text-xs text-slate-500">Vence em {review.dueAt.toLocaleDateString("pt-BR")}</p>
+                    <p className="text-xs text-slate-500">{formatReviewDueText(review.dueAt)}</p>
                   </div>
                 ))
               ) : (

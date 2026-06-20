@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CheckCircle2, CircleDotDashed } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -26,23 +27,39 @@ export function MissionCard({
   exerciseCount
 }: MissionCardProps) {
   return (
-    <Card className={cn("border-l-4", completed ? "border-l-emerald-600" : "border-l-slate-200")}>
+    <Card
+      className={cn(
+        "border-l-4 transition-colors hover:border-emerald-200",
+        completed ? "border-l-emerald-600 bg-emerald-50/40" : "border-l-slate-200 bg-white"
+      )}
+    >
       <CardContent className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="space-y-2">
           <div className="flex flex-wrap items-center gap-2">
+            <span
+              className={cn(
+                "flex h-8 w-8 items-center justify-center rounded-full",
+                completed ? "bg-emerald-100 text-emerald-700" : "bg-slate-100 text-slate-500"
+              )}
+              aria-hidden="true"
+            >
+              {completed ? <CheckCircle2 className="h-4 w-4" /> : <CircleDotDashed className="h-4 w-4" />}
+            </span>
             <p className="font-semibold text-slate-950">{title}</p>
-            <Badge variant={completed ? "default" : "outline"}>{masteryStatus}</Badge>
+            <Badge variant={completed ? "default" : "outline"}>
+              {completed ? "Concluída" : masteryStatus}
+            </Badge>
           </div>
-          <p className="max-w-2xl text-sm leading-6 text-slate-600">{description}</p>
-          <p className="text-xs font-medium text-slate-500">
-            {correctCount}/{exerciseCount} acertos únicos · {attemptsCount} tentativas
+          <p className="max-w-2xl pl-10 text-sm leading-6 text-slate-600 sm:pl-0">{description}</p>
+          <p className="pl-10 text-xs font-medium text-slate-500 sm:pl-0">
+            {correctCount}/{exerciseCount} acertos únicos · {attemptsCount} tentativa{attemptsCount === 1 ? "" : "s"}
           </p>
         </div>
         <Link
           href={`/app/missoes/${id}`}
-          className="inline-flex h-10 shrink-0 items-center justify-center rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-50"
+          className="inline-flex h-10 shrink-0 items-center justify-center rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition-colors hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-900"
         >
-          Abrir missão
+          {completed ? "Revisar missão" : "Estudar missão"}
         </Link>
       </CardContent>
     </Card>

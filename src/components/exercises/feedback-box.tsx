@@ -10,7 +10,7 @@ export function FeedbackBox({ isCorrect, title, children }: FeedbackBoxProps) {
   return (
     <div
       className={cn(
-        "rounded-md border px-4 py-3 text-sm leading-6",
+        "rounded-md border px-4 py-3 text-sm leading-6 shadow-sm",
         isCorrect === true && "border-emerald-200 bg-emerald-50 text-emerald-950",
         isCorrect === false && "border-amber-200 bg-amber-50 text-amber-950",
         isCorrect === undefined && "border-slate-200 bg-slate-50 text-slate-700"

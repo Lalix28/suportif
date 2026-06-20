@@ -15,13 +15,15 @@ const trackDefinitions = [
     level: "BASIC",
     coverIcon: "network",
     color: "emerald",
+    description:
+      "Aprenda a ler os elementos básicos de uma rede: endereços, serviços, navegação e testes simples.",
     modules: [
-      "O que é uma rede",
-      "IP, máscara e gateway",
-      "DNS",
-      "HTTP e HTTPS",
-      "Ping e traceroute",
-      "Portas e serviços"
+      "O que é uma rede de computadores?",
+      "IP, máscara e gateway na prática",
+      "DNS sem mistério",
+      "HTTP e HTTPS no navegador",
+      "Testes com ping e traceroute",
+      "Portas e serviços essenciais"
     ]
   },
   {
@@ -31,13 +33,15 @@ const trackDefinitions = [
     level: "INTRODUCTORY",
     coverIcon: "terminal",
     color: "slate",
+    description:
+      "Construa confiança para navegar no terminal, entender arquivos e usar comandos com segurança.",
     modules: [
-      "O que é Linux",
-      "Terminal",
-      "Comandos básicos",
-      "Navegação em diretórios",
-      "Arquivos e permissões",
-      "Pipes e redirecionamento"
+      "Primeiros passos no Linux",
+      "Primeiros passos no terminal Linux",
+      "Comandos essenciais do dia a dia",
+      "Navegação entre pastas",
+      "Arquivos, donos e permissões",
+      "Pipes e redirecionamento com calma"
     ]
   },
   {
@@ -47,7 +51,17 @@ const trackDefinitions = [
     level: "INTRODUCTORY",
     coverIcon: "code",
     color: "blue",
-    modules: ["Algoritmos", "Variáveis", "Condicionais", "Laços", "Funções", "Listas", "Mini projetos"]
+    description:
+      "Organize o raciocínio de programação em passos pequenos, com exemplos e prática progressiva.",
+    modules: [
+      "Como pensar em algoritmos",
+      "Variáveis e tipos de informação",
+      "Decisões com condicionais",
+      "Repetições com laços",
+      "Funções para organizar código",
+      "Listas para guardar conjuntos",
+      "Mini projeto guiado"
+    ]
   },
   {
     title: "Matemática para Tecnologia",
@@ -56,13 +70,15 @@ const trackDefinitions = [
     level: "BASIC",
     coverIcon: "calculator",
     color: "violet",
+    description:
+      "Revise matemática aplicada a situações de tecnologia, dados, medidas e leitura de gráficos.",
     modules: [
-      "Porcentagem",
-      "Regra de três",
-      "Unidades de medida",
+      "Porcentagem aplicada à tecnologia",
+      "Regra de três em problemas reais",
+      "Unidades de medida em tecnologia",
       "Potência e notação científica",
-      "Funções e gráficos",
-      "Lógica matemática"
+      "Funções e gráficos na prática",
+      "Lógica matemática para resolver problemas"
     ]
   },
   {
@@ -72,12 +88,14 @@ const trackDefinitions = [
     level: "INTRODUCTORY",
     coverIcon: "book-open",
     color: "cyan",
+    description:
+      "Leia mensagens, interfaces e documentações curtas em inglês técnico com menos travamento.",
     modules: [
       "Termos comuns de interface",
-      "Erros de terminal",
+      "Mensagens de erro no terminal",
       "Vocabulário de redes",
       "Vocabulário de programação",
-      "Leitura de README"
+      "Leitura de README sem medo"
     ]
   },
   {
@@ -87,7 +105,16 @@ const trackDefinitions = [
     level: "BASIC",
     coverIcon: "shield",
     color: "rose",
-    modules: ["Ética", "Senhas", "Phishing", "Logs", "Portas e serviços", "Mini desafios defensivos"]
+    description:
+      "Comece por hábitos defensivos, leitura de sinais de risco e análise responsável de cenários simples.",
+    modules: [
+      "Ética e segurança responsável",
+      "Senhas fortes e autenticação",
+      "Como reconhecer phishing",
+      "Leitura inicial de logs",
+      "Portas e serviços sob olhar defensivo",
+      "Mini desafios defensivos"
+    ]
   },
   {
     title: "Concurso / Edital",
@@ -96,9 +123,120 @@ const trackDefinitions = [
     level: "INTRODUCTORY",
     coverIcon: "file-text",
     color: "amber",
-    modules: ["Cadastro de edital", "Disciplinas", "Assuntos", "Questões", "Simulados", "Revisões"]
+    description:
+      "Simule uma organização genérica de estudos por edital, sem conteúdo oficial ou prova real.",
+    modules: [
+      "Como cadastrar um edital fictício",
+      "Disciplinas e blocos de estudo",
+      "Assuntos priorizados",
+      "Questões como prática",
+      "Simulados para medir ritmo",
+      "Como transformar estudo em rotina"
+    ]
   }
 ] as const;
+
+const modulePresentation: Record<
+  string,
+  {
+    title: string;
+    shortDescription: string;
+    objective: string;
+    quickExplanation: string;
+    detailedExplanation: string;
+    analogy: string;
+    practicalExample: string;
+    guidedExercisePrompt: string;
+    challengePrompt: string;
+    summary: string;
+    attentionPoints?: string[];
+  }
+> = {
+  "O que é uma rede de computadores?": {
+    title: "O que é uma rede de computadores?",
+    shortDescription: "Entenda como dispositivos trocam informações em um cenário simples e fictício.",
+    objective: "Reconhecer a ideia de rede como conexão entre dispositivos que precisam se comunicar.",
+    quickExplanation:
+      "Uma rede conecta computadores, celulares, servidores e outros dispositivos para que eles troquem dados.",
+    detailedExplanation:
+      "Nesta missão demonstrativa, a rede aparece como um conjunto de dispositivos ligados por regras de comunicação. O foco é entender a ideia, não decorar normas ou equipamentos específicos.",
+    analogy:
+      "Pense em uma rede como uma pequena cidade: cada dispositivo tem um endereço e as mensagens precisam encontrar o caminho certo.",
+    practicalExample:
+      "Um notebook envia uma solicitação ao roteador, que encaminha a comunicação até um serviço na internet e traz a resposta de volta.",
+    guidedExercisePrompt: "Qual descrição combina melhor com uma rede de computadores?",
+    challengePrompt: "Em um laboratório fictício, escolha a situação que realmente exige comunicação em rede.",
+    summary: "Rede é a base para dispositivos compartilharem dados, serviços e acesso a outros sistemas."
+  },
+  "IP, máscara e gateway na prática": {
+    title: "IP, máscara e gateway na prática",
+    shortDescription: "Veja o papel de endereço, rede local e saída para outras redes.",
+    objective: "Diferenciar IP, máscara e gateway em um cenário doméstico demonstrativo.",
+    quickExplanation:
+      "IP identifica um dispositivo. Máscara indica qual parte do endereço pertence à rede. Gateway é o caminho usado para sair da rede local.",
+    detailedExplanation:
+      "Pense no IP como o endereço de uma casa. A máscara mostra qual é o bairro. O gateway é a saída principal para falar com outros bairros.",
+    analogy:
+      "Em um bairro fictício, o IP é a casa, a máscara delimita o bairro e o gateway é a avenida que leva para fora dele.",
+    practicalExample:
+      "Seu computador 192.168.1.10 usa o roteador 192.168.1.1 como gateway para acessar a internet.",
+    guidedExercisePrompt: "Em uma rede doméstica demonstrativa, qual endereço normalmente representa o gateway?",
+    challengePrompt:
+      "Dado um cenário com IP, máscara e gateway fictícios, identifique qual configuração está incoerente.",
+    summary: "IP identifica, máscara define a rede e gateway permite comunicação com outras redes.",
+    attentionPoints: [
+      "Não confundir gateway com DNS.",
+      "A mesma rede local precisa de endereços compatíveis.",
+      "Os números usados aqui são apenas exemplos demonstrativos."
+    ]
+  },
+  "Primeiros passos no terminal Linux": {
+    title: "Primeiros passos no terminal Linux",
+    shortDescription: "Ganhe familiaridade com comandos curtos e leitura de respostas do terminal.",
+    objective: "Entender o terminal como uma forma direta de conversar com o sistema.",
+    quickExplanation:
+      "O terminal recebe comandos em texto e devolve respostas que ajudam a navegar, listar arquivos e executar tarefas.",
+    detailedExplanation:
+      "A missão mostra o terminal como uma ferramenta de estudo. Antes de comandos avançados, importa saber onde você está, o que existe na pasta atual e como ler mensagens simples.",
+    analogy:
+      "É como pedir instruções por escrito: você envia uma frase objetiva e o sistema responde com o resultado ou com um aviso.",
+    practicalExample: "Ao digitar `pwd`, o usuário vê a pasta atual; com `ls`, vê os itens daquele local.",
+    guidedExercisePrompt: "Qual comando demonstrativo ajuda a descobrir a pasta atual?",
+    challengePrompt: "Escolha a sequência mais coerente para se orientar antes de abrir um arquivo fictício.",
+    summary: "Terminal é uma interface de texto útil para navegar, executar comandos e entender o sistema."
+  },
+  "Porcentagem aplicada à tecnologia": {
+    title: "Porcentagem aplicada à tecnologia",
+    shortDescription: "Use porcentagem para interpretar progresso, acertos, uso de recurso e comparações.",
+    objective: "Aplicar porcentagem em situações simples de estudo e tecnologia.",
+    quickExplanation:
+      "Porcentagem mostra uma parte em relação a 100. Ela ajuda a comparar desempenho, progresso e uso de recursos.",
+    detailedExplanation:
+      "Nesta missão, porcentagem aparece como linguagem para medir avanço. Se 8 de 10 questões foram corretas, o resultado é 80%.",
+    analogy:
+      "Imagine uma barra de progresso: quando metade está preenchida, ela representa 50% do caminho.",
+    practicalExample: "Um simulado com 15 acertos em 20 questões corresponde a 75% de acerto.",
+    guidedExercisePrompt: "Se uma missão tem 4 etapas e 3 foram concluídas, qual porcentagem representa o progresso?",
+    challengePrompt: "Escolha a interpretação correta para um painel fictício com 60% de acertos.",
+    summary: "Porcentagem transforma partes de um todo em uma medida fácil de comparar."
+  },
+  "Como transformar estudo em rotina": {
+    title: "Como transformar estudo em rotina",
+    shortDescription: "Organize revisões e simulados em um ciclo pequeno, repetível e realista.",
+    objective: "Reconhecer uma rotina de estudo simples baseada em prática, revisão e ajuste.",
+    quickExplanation:
+      "Uma rotina boa combina estudo curto, exercício, revisão do erro e novo teste depois de algum tempo.",
+    detailedExplanation:
+      "A missão usa um edital fictício para demonstrar organização. Não há conteúdo oficial: o objetivo é validar o fluxo de rotina dentro da plataforma.",
+    analogy:
+      "É como treinar uma música: tocar um pouco, corrigir o trecho difícil e voltar nele depois.",
+    practicalExample:
+      "O estudante faz uma missão curta hoje, agenda revisão para amanhã e usa o próximo simulado para medir evolução.",
+    guidedExercisePrompt: "Qual sequência representa uma rotina de estudo mais sustentável?",
+    challengePrompt: "Escolha o ajuste mais adequado para um estudante fictício com revisões atrasadas.",
+    summary: "Rotina de estudo nasce de ciclos pequenos: aprender, praticar, revisar e medir novamente."
+  }
+};
 
 function slugify(value: string) {
   return value
@@ -116,48 +254,38 @@ function daysFromNow(days: number) {
 }
 
 function buildMissionContent(trackTitle: string, moduleTitle: string) {
-  if (moduleTitle === "IP, máscara e gateway") {
+  const preparedContent = modulePresentation[moduleTitle];
+
+  if (preparedContent) {
     return {
-      title: "IP, máscara e gateway sem complicar",
-      slug: "ip-mascara-e-gateway-sem-complicar",
-      shortDescription: "Missão demonstrativa, fictícia e não oficial sobre fundamentos de rede.",
-      objective: "Diferenciar IP, máscara e gateway em um cenário doméstico demonstrativo.",
-      quickExplanation:
-        "IP identifica um dispositivo na rede. Máscara indica qual parte do endereço pertence à rede. Gateway é o caminho usado para sair da rede local.",
-      detailedExplanation:
-        "Pense no IP como o endereço de uma casa. A máscara mostra qual é o bairro. O gateway é a saída principal para falar com outros bairros.",
-      analogy:
-        "Em um bairro fictício, o IP é a casa, a máscara delimita o bairro e o gateway é a avenida que leva para fora dele.",
-      practicalExample:
-        "Seu computador 192.168.1.10 usa o roteador 192.168.1.1 como gateway para acessar a internet.",
-      guidedExercisePrompt: "Em uma rede doméstica demonstrativa, qual endereço normalmente representa o gateway?",
-      challengePrompt:
-        "Dado um cenário com IP, máscara e gateway fictícios, identifique qual configuração está incoerente.",
-      summary: "IP identifica, máscara define a rede e gateway permite comunicação com outras redes.",
+      ...preparedContent,
+      slug: slugify(preparedContent.title),
       attentionPoints: [
         "Conteúdo demonstrativo e não oficial.",
-        "Não confundir gateway com DNS.",
-        "A mesma rede local precisa de endereços compatíveis."
+        ...(preparedContent.attentionPoints ?? [
+          "Use os cenários desta plataforma apenas como apoio visual.",
+          "Valide conteúdo real depois com material fornecido pelo usuário."
+        ])
       ]
     };
   }
 
   return {
-    title: `Fundamentos de ${moduleTitle}`,
-    slug: `fundamentos-de-${slugify(moduleTitle)}`,
-    shortDescription: `Missão demonstrativa, fictícia e não oficial da trilha ${trackTitle}.`,
-    objective: `Reconhecer a ideia central de ${moduleTitle} em um contexto simples de estudo.`,
-    quickExplanation: `${moduleTitle} é apresentado aqui como um conceito inicial para organizar o estudo progressivo.`,
-    detailedExplanation: `Nesta missão demonstrativa, ${moduleTitle} aparece em uma situação guiada, com exemplos curtos e sem conteúdo oficial de instituição, edital ou curso.`,
-    analogy: `Pense em ${moduleTitle} como uma peça de um mapa: ela ajuda a entender onde você está antes de avançar.`,
-    practicalExample: `Um estudante usa ${moduleTitle} para resolver uma tarefa curta e registrar progresso dentro da plataforma.`,
-    guidedExercisePrompt: `Qual alternativa descreve melhor o papel de ${moduleTitle} nesta missão demonstrativa?`,
-    challengePrompt: `Escolha a opção que aplica ${moduleTitle} de forma coerente em um cenário fictício.`,
-    summary: `${moduleTitle} foi introduzido como fundamento demonstrativo para estudos posteriores.`,
+    title: moduleTitle,
+    slug: slugify(moduleTitle),
+    shortDescription: `Uma missão curta da trilha ${trackTitle}, criada para demonstrar o fluxo de estudo.`,
+    objective: `Entender a ideia principal de ${moduleTitle} em uma situação simples e fictícia.`,
+    quickExplanation: `${moduleTitle} aparece aqui como um passo pequeno da jornada, com foco em clareza antes de profundidade.`,
+    detailedExplanation: `A missão apresenta ${moduleTitle} por meio de uma explicação guiada, exemplo curto e exercício de fixação. O conteúdo continua demonstrativo e não representa ementa, edital ou material oficial.`,
+    analogy: `Pense neste tema como uma placa no caminho: ela ajuda você a saber qual direção tomar antes de seguir para a próxima etapa.`,
+    practicalExample: `Um estudante lê a explicação, responde uma questão curta sobre ${moduleTitle} e usa o feedback para decidir se revisa ou avança.`,
+    guidedExercisePrompt: `Qual alternativa descreve melhor a função de ${moduleTitle} no cenário apresentado?`,
+    challengePrompt: `Escolha a aplicação mais coerente de ${moduleTitle} em uma situação fictícia de estudo.`,
+    summary: `${moduleTitle} foi trabalhado como uma etapa inicial, com prática curta e feedback imediato.`,
     attentionPoints: [
       "Conteúdo demonstrativo, fictício e não oficial.",
       "Validar conteúdo real posteriormente com material fornecido pelo usuário.",
-      "Não há execução real de código no MVP."
+      "As atividades servem para validar experiência, progresso e revisão."
     ]
   };
 }
@@ -241,7 +369,7 @@ async function main() {
   });
 
   const teacher = await createUser({
-    name: "Professor Demo",
+    name: "Prof. Marina Costa",
     email: "professor@suportif.dev",
     role: "TEACHER",
     totalXp: 0,
@@ -250,7 +378,7 @@ async function main() {
 
   const students = [
     await createUser({
-      name: "Aluno Demo",
+      name: "Lucas Andrade",
       email: "aluno@suportif.dev",
       role: "STUDENT",
       totalXp: 760,
@@ -258,7 +386,7 @@ async function main() {
       lastLoginDaysAgo: 1
     }),
     await createUser({
-      name: "Ana Demo",
+      name: "Ana Ribeiro",
       email: "ana.demo@suportif.dev",
       role: "STUDENT",
       totalXp: 340,
@@ -266,7 +394,7 @@ async function main() {
       lastLoginDaysAgo: 3
     }),
     await createUser({
-      name: "Bruno Demo",
+      name: "Bruno Martins",
       email: "bruno.demo@suportif.dev",
       role: "STUDENT",
       totalXp: 120,
@@ -274,7 +402,7 @@ async function main() {
       lastLoginDaysAgo: 12
     }),
     await createUser({
-      name: "Carla Demo",
+      name: "Carla Nunes",
       email: "carla.demo@suportif.dev",
       role: "STUDENT",
       totalXp: 520,
@@ -282,7 +410,7 @@ async function main() {
       lastLoginDaysAgo: 0
     }),
     await createUser({
-      name: "Diego Demo",
+      name: "Diego Souza",
       email: "diego.demo@suportif.dev",
       role: "STUDENT",
       totalXp: 80,
@@ -345,8 +473,7 @@ async function main() {
       data: {
         title: trackDefinition.title,
         slug: trackDefinition.slug,
-        description:
-          "Trilha demonstrativa, fictícia e não oficial. Serve para validar o MVP e receber conteúdo real posteriormente.",
+        description: `${trackDefinition.description} Conteúdo demonstrativo, fictício e não oficial.`,
         area: trackDefinition.area,
         level: trackDefinition.level,
         coverIcon: trackDefinition.coverIcon,
@@ -364,7 +491,7 @@ async function main() {
           trackId: track.id,
           title: moduleTitle,
           slug: moduleSlug,
-          description: `Módulo demonstrativo, fictício e não oficial sobre ${moduleTitle}.`,
+          description: `Uma etapa curta para estudar ${moduleTitle} com explicação, exemplo e prática demonstrativa.`,
           order: moduleIndex + 1,
           isDemo: true
         }
@@ -372,9 +499,9 @@ async function main() {
 
       const skill = await prisma.skill.create({
         data: {
-          name: `Fundamento: ${moduleTitle}`,
+          name: moduleTitle,
           slug: `${track.slug}-${moduleSlug}`,
-          description: `Habilidade demonstrativa, fictícia e não oficial vinculada a ${moduleTitle}.`
+          description: `Habilidade demonstrativa vinculada a ${moduleTitle}, sem conteúdo oficial cadastrado.`
         }
       });
 
@@ -427,7 +554,7 @@ async function main() {
           type: "MULTIPLE_CHOICE",
           prompt: missionContent.guidedExercisePrompt,
           explanation:
-            "Exercício demonstrativo. A explicação real poderá ser refinada quando o conteúdo oficial for fornecido.",
+            "Use a explicação da missão para escolher a alternativa mais coerente neste cenário fictício.",
           difficulty: moduleIndex === 0 ? "INTRODUCTORY" : "BASIC",
           skillId: skill.id,
           order: 1,
@@ -435,19 +562,19 @@ async function main() {
           options: {
             create: [
               {
-                text: `A opção que conecta ${moduleTitle} ao objetivo da missão demonstrativa.`,
+                text: `A alternativa que conecta ${moduleTitle} ao objetivo estudado na missão.`,
                 isCorrect: true,
-                feedback: "Correto. A alternativa mantém coerência com a explicação demonstrativa."
+                feedback: "Correto. Você conectou a explicação ao cenário proposto."
               },
               {
                 text: `Uma resposta que mistura ${moduleTitle} com outro assunto sem relação direta.`,
                 isCorrect: false,
-                feedback: "Ainda não. Revise a explicação mastigada antes de tentar novamente."
+                feedback: "Ainda não. Volte na explicação mastigada e procure a relação principal."
               },
               {
-                text: "Uma resposta baseada em conteúdo oficial não cadastrado no MVP.",
+                text: "Uma resposta que usa uma informação que não foi apresentada na missão.",
                 isCorrect: false,
-                feedback: "O MVP não usa conteúdo oficial inventado. Use apenas o cenário demonstrativo."
+                feedback: "Use apenas as informações apresentadas no cenário da plataforma."
               }
             ]
           }
@@ -461,7 +588,7 @@ async function main() {
           type: "MULTIPLE_CHOICE",
           prompt: missionContent.challengePrompt,
           explanation:
-            "Desafio demonstrativo sem execução de código. A resposta é validada por alternativa cadastrada.",
+            "Tente resolver sem ajuda. A resposta é validada pelas alternativas cadastradas no banco.",
           difficulty: "BASIC",
           skillId: skill.id,
           order: 2,
@@ -469,19 +596,19 @@ async function main() {
           options: {
             create: [
               {
-                text: `Aplicar ${moduleTitle} ao cenário fictício apresentado.`,
+                text: `Aplicar ${moduleTitle} ao cenário apresentado na missão.`,
                 isCorrect: true,
-                feedback: "Correto. A decisão segue o cenário fictício e não depende de conteúdo oficial."
+                feedback: "Correto. A decisão segue o cenário e mostra boa leitura do problema."
               },
               {
-                text: "Ignorar o cenário e escolher uma regra externa não cadastrada.",
+                text: "Ignorar os dados da missão e escolher uma conclusão sem apoio no cenário.",
                 isCorrect: false,
-                feedback: "Esta plataforma não presume regras externas. Use os dados da missão."
+                feedback: "Volte ao enunciado e use os dados que aparecem na tela."
               },
               {
-                text: "Executar código no servidor para descobrir a resposta.",
+                text: "Tentar resolver por um caminho que não faz parte desta atividade.",
                 isCorrect: false,
-                feedback: "Não há execução real de código no MVP por segurança."
+                feedback: "Esta atividade é resolvida pela leitura do cenário e das alternativas."
               }
             ]
           }
@@ -631,8 +758,8 @@ async function main() {
             selectedOptionId,
             isCorrect: correct,
             feedback: correct
-              ? "Tentativa correta criada pelo seed demonstrativo."
-              : "Tentativa incorreta criada pelo seed demonstrativo."
+              ? "Resposta correta registrada no cenário demonstrativo."
+              : "Resposta incorreta registrada para demonstrar revisão e feedback."
           }
         });
       }
@@ -711,8 +838,8 @@ async function main() {
 
   const simulationDefinitions = [
     {
-      title: "Simulado demonstrativo de Redes",
-      description: "Simulado fictício e não oficial para validar resultado por habilidade.",
+      title: "Diagnóstico rápido de Redes",
+      description: "Simulado fictício e não oficial para medir leitura inicial de fundamentos de rede.",
       type: "TRACK" as const,
       trackSlug: "redes-de-computadores",
       exercises: missions
@@ -721,15 +848,15 @@ async function main() {
         .slice(0, 6)
     },
     {
-      title: "Simulado demonstrativo misto",
-      description: "Simulado fictício com assuntos variados para o MVP.",
+      title: "Prática mista de tecnologia",
+      description: "Simulado fictício com assuntos variados para validar revisão, resultado e progresso.",
       type: "MIXED" as const,
       trackSlug: undefined,
       exercises: missions.flatMap((mission) => mission.exercises).slice(0, 8)
     },
     {
-      title: "Simulado demonstrativo Concurso/Edital",
-      description: "Estrutura genérica para edital. Não contém conteúdo real de concurso.",
+      title: "Ritmo de estudo por edital fictício",
+      description: "Estrutura genérica de simulado. Não contém conteúdo real de concurso.",
       type: "DEMO_EXAM" as const,
       trackSlug: "concurso-edital",
       exercises: missions

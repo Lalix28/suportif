@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { SkillResultView } from "@/lib/simulations/presentation";
+import { getSkillDisplayName, type SkillResultView } from "@/lib/simulations/presentation";
 
 type SimulationSkillAnalysisProps = {
   title: string;
@@ -25,9 +25,12 @@ export function SimulationSkillAnalysis({
       </CardHeader>
       <CardContent className="space-y-2">
         {skills.length > 0 ? (
-          skills.map((skill) => (
-            <div key={skill.key} className={`rounded-md px-3 py-2 text-sm ${colorClass}`}>
-              <p className="font-semibold">{skill.label}</p>
+          skills.map((skill, index) => (
+            <div
+              key={`${getSkillDisplayName(skill)}-${index}`}
+              className={`rounded-md px-3 py-2 text-sm ${colorClass}`}
+            >
+              <p className="font-semibold">{getSkillDisplayName(skill)}</p>
               <p>
                 {skill.correctCount}/{skill.total} acertos · {skill.accuracy}%
               </p>

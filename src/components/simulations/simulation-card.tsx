@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   getBestSimulationScore,
   getSimulationRecommendationStatus,
+  getSimulationTypeLabel,
   type SimulationAttemptView
 } from "@/lib/simulations/presentation";
 
@@ -35,7 +36,7 @@ export function SimulationCard({
     <Card className="h-full overflow-hidden">
       <CardHeader className="space-y-3">
         <div className="flex flex-wrap gap-2">
-          <Badge variant="secondary">{type}</Badge>
+          <Badge variant="secondary">{getSimulationTypeLabel(type)}</Badge>
           <Badge variant={status === "Revisar e refazer" ? "warning" : "outline"}>{status}</Badge>
         </div>
         <CardTitle className="text-xl">{title}</CardTitle>

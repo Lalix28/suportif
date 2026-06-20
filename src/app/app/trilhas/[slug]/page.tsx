@@ -33,10 +33,10 @@ export default async function TrackMapPage({ params }: { params: Promise<{ slug:
               <Badge variant="secondary">{summary.area}</Badge>
               <Badge variant="outline">{summary.isDemo ? "Demonstrativa" : "Conteúdo cadastrado"}</Badge>
             </div>
-            <h1 className="mt-3 text-3xl font-bold text-slate-950">{summary.title}</h1>
-            <p className="mt-2 max-w-3xl text-slate-600">{summary.description}</p>
+            <h1 className="mt-3 text-3xl font-black text-slate-950">{summary.title}</h1>
+            <p className="mt-2 max-w-3xl leading-7 text-slate-600">{summary.description}</p>
           </div>
-          <Card>
+          <Card className="bg-white">
             <CardHeader>
               <CardTitle className="text-lg">Progresso da trilha</CardTitle>
             </CardHeader>
@@ -50,7 +50,7 @@ export default async function TrackMapPage({ params }: { params: Promise<{ slug:
               ) : (
                 <form action={startTrackAction}>
                   <input type="hidden" name="trackId" value={summary.id} />
-                  <Button type="submit">Iniciar trilha</Button>
+                  <Button type="submit">Iniciar jornada</Button>
                 </form>
               )}
             </CardContent>
@@ -67,9 +67,9 @@ export default async function TrackMapPage({ params }: { params: Promise<{ slug:
               </div>
               <Link
                 href={`/app/missoes/${summary.nextMission.id}`}
-                className="inline-flex h-10 items-center justify-center rounded-md bg-emerald-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-emerald-800"
+                className="inline-flex h-10 items-center justify-center rounded-md bg-emerald-700 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-emerald-900/20 transition-colors hover:bg-emerald-800"
               >
-                Estudar agora
+                Continuar estudando
               </Link>
             </CardContent>
           </Card>

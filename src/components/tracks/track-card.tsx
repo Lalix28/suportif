@@ -28,11 +28,13 @@ export function TrackCard({
   action
 }: TrackCardProps) {
   return (
-    <Card className="h-full">
+    <Card className="h-full transition-colors hover:border-emerald-200">
       <CardHeader>
         <div className="flex items-start justify-between gap-3">
           <CardTitle className="flex items-center gap-2 text-lg">
-            <span className="rounded-md bg-emerald-50 px-2 py-1 text-sm text-emerald-800">{icon}</span>
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-50 text-sm text-emerald-800 ring-1 ring-emerald-100">
+              {icon}
+            </span>
             {title}
           </CardTitle>
           <Badge variant="outline">{area}</Badge>
@@ -48,9 +50,9 @@ export function TrackCard({
           {href ? (
             <Link
               href={href}
-              className="inline-flex h-10 items-center justify-center rounded-md bg-emerald-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-emerald-800"
+              className="inline-flex h-10 items-center justify-center rounded-md bg-emerald-700 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-emerald-900/20 transition-colors hover:bg-emerald-800"
             >
-              Continuar
+              Continuar estudando
             </Link>
           ) : null}
           {action}

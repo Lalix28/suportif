@@ -1,3 +1,5 @@
+import { AlertCircle, BookOpenCheck, CheckCircle2, Clock, Flame, Target } from "lucide-react";
+
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExerciseCard } from "@/components/exercises/exercise-card";
@@ -40,17 +42,26 @@ type MissionReaderProps = {
 export function MissionReader({ mission }: MissionReaderProps) {
   return (
     <div className="space-y-6">
-      <Card>
+      <Card className="border-emerald-100 bg-white">
         <CardHeader>
           <div className="flex flex-wrap gap-2">
             <Badge>{mission.difficulty}</Badge>
-            <Badge variant="secondary">{mission.xpReward} XP</Badge>
-            <Badge variant="outline">{mission.estimatedMinutes} min</Badge>
+            <Badge variant="secondary" className="gap-1 bg-emerald-50 text-emerald-800">
+              <Flame className="h-3.5 w-3.5" /> {mission.xpReward} XP
+            </Badge>
+            <Badge variant="outline" className="gap-1">
+              <Clock className="h-3.5 w-3.5" /> {mission.estimatedMinutes} min
+            </Badge>
           </div>
-          <CardTitle className="pt-2 text-3xl">{mission.title}</CardTitle>
+          <CardTitle className="pt-2 text-3xl font-black leading-tight">{mission.title}</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-base leading-7 text-slate-700">{mission.objective}</p>
+          <div className="rounded-lg border border-emerald-100 bg-emerald-50 p-4">
+            <p className="flex items-center gap-2 text-sm font-bold text-emerald-900">
+              <Target className="h-4 w-4" /> Objetivo da missão
+            </p>
+            <p className="mt-2 text-base leading-7 text-emerald-950">{mission.objective}</p>
+          </div>
         </CardContent>
       </Card>
 
@@ -85,17 +96,21 @@ export function MissionReader({ mission }: MissionReaderProps) {
       />
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <Card>
+        <Card className="border-emerald-100">
           <CardHeader>
-            <CardTitle className="text-lg">Exercício guiado</CardTitle>
+            <CardTitle className="flex items-center gap-2 text-lg">
+              <BookOpenCheck className="h-5 w-5 text-emerald-700" /> Exercício guiado
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm leading-6 text-slate-700">{mission.guidedExercisePrompt}</p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="border-amber-100">
           <CardHeader>
-            <CardTitle className="text-lg">Desafio sem ajuda</CardTitle>
+            <CardTitle className="flex items-center gap-2 text-lg">
+              <CheckCircle2 className="h-5 w-5 text-amber-700" /> Desafio sem ajuda
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm leading-6 text-slate-700">{mission.challengePrompt}</p>
@@ -105,12 +120,14 @@ export function MissionReader({ mission }: MissionReaderProps) {
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg">Pontos de atenção</CardTitle>
+          <CardTitle className="flex items-center gap-2 text-lg">
+            <AlertCircle className="h-5 w-5 text-slate-500" /> Pontos de atenção
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <ul className="grid gap-2 text-sm leading-6 text-slate-700">
             {mission.attentionPoints.map((point) => (
-              <li key={point} className="rounded-md bg-slate-50 px-3 py-2">
+              <li key={point} className="rounded-md border border-slate-100 bg-slate-50 px-3 py-2">
                 {point}
               </li>
             ))}

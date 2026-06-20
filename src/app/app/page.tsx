@@ -1,4 +1,12 @@
 import Link from "next/link";
+import {
+  CalendarCheck,
+  ClipboardCheck,
+  Flame,
+  Sparkles,
+  TrendingUp,
+  Trophy
+} from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,7 +17,11 @@ import { XPBadge } from "@/components/dashboard/xp-badge";
 import { ProtectedShell } from "@/components/layout/protected-shell";
 import { ReviewList } from "@/components/reviews/review-list";
 import { requireRole } from "@/lib/auth/session";
-import { parseSkillResults } from "@/lib/simulations/presentation";
+import {
+  getSimulationTypeLabel,
+  getSkillDisplayName,
+  parseSkillResults
+} from "@/lib/simulations/presentation";
 import { getStudentDashboard } from "@/server/queries/student";
 
 export const dynamic = "force-dynamic";
@@ -29,38 +41,41 @@ export default async function StudentAppPage() {
               <XPBadge xp={user.profile?.totalXp ?? 0} />
               <LevelBadge level={user.profile?.level ?? 1} />
             </div>
-            <h1 className="mt-3 text-3xl font-bold text-slate-950">Olá, {user.name}</h1>
+            <h1 className="mt-3 text-3xl font-black text-slate-950">Olá, {user.name}</h1>
             <p className="mt-2 max-w-2xl text-slate-600">
-              Continue pelas trilhas demonstrativas e revise os pontos que merecem atenção.
+              Continue sua jornada de estudo e priorize os pontos que merecem atenção hoje.
             </p>
           </div>
           <Link
             href="/app/trilhas"
-            className="inline-flex h-10 items-center justify-center rounded-md bg-emerald-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-emerald-800"
+            className="inline-flex h-10 items-center justify-center rounded-md bg-emerald-700 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-emerald-900/20 transition-colors hover:bg-emerald-800"
           >
             Ver trilhas
           </Link>
         </section>
 
         <section className="grid gap-4 md:grid-cols-4">
-          <DashboardCard title="XP total" value={user.profile?.totalXp ?? 0} description="Perfil real." />
-          <DashboardCard title="Nível" value={user.profile?.level ?? 1} description="Calculado por XP." />
+          <DashboardCard title="XP acumulado" value={user.profile?.totalXp ?? 0} description="Registrado no seu perfil." />
+          <DashboardCard title="Nível atual" value={user.profile?.level ?? 1} description="Calculado pelo XP." />
           <DashboardCard
             title="Progresso geral"
             value={`${dashboard.progressPercent}%`}
-            description={`${dashboard.completedMissions}/${dashboard.totalMissions} missões.`}
+            description={`${dashboard.completedMissions}/${dashboard.totalMissions} missões concluídas.`}
           />
           <DashboardCard
-            title="Revisões"
+            title="Revisões ativas"
             value={dashboard.pendingReviews.length}
             description="Pendentes ou atrasadas."
           />
         </section>
 
         <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <Card>
+          <Card className="border-emerald-100 bg-white shadow-md shadow-emerald-950/[0.04]">
             <CardHeader>
-              <CardTitle>Próximo passo</CardTitle>
+              <Badge variant="secondary" className="w-fit bg-emerald-50 text-emerald-800">
+                Continue de onde parou
+              </Badge>
+              <CardTitle>Próximo passo sugerido</CardTitle>
             </CardHeader>
             <CardContent>
               {dashboard.nextStep ? (
@@ -76,14 +91,14 @@ export default async function StudentAppPage() {
                   </div>
                   <Link
                     href={`/app/missoes/${dashboard.nextStep.id}`}
-                    className="inline-flex h-10 items-center justify-center rounded-md bg-emerald-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-emerald-800"
+                    className="inline-flex h-10 items-center justify-center rounded-md bg-emerald-700 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-emerald-900/20 transition-colors hover:bg-emerald-800"
                   >
-                    Abrir missão
+                    Continuar estudando
                   </Link>
                 </div>
               ) : (
                 <p className="text-sm text-slate-600">
-                  Nenhuma próxima missão encontrada. Inicie uma trilha pública para continuar.
+                  Nenhuma próxima missão encontrada. Inicie uma trilha pública para abrir sua jornada.
                 </p>
               )}
             </CardContent>
@@ -91,17 +106,22 @@ export default async function StudentAppPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Badges recentes</CardTitle>
+              <CardTitle>Conquistas recentes</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
               {dashboard.recentBadges.length > 0 ? (
-                dashboard.recentBadges.map((userBadge) => (
-                  <Badge key={userBadge.id} variant="outline">
-                    {userBadge.badge.icon} {userBadge.badge.title}
-                  </Badge>
-                ))
+                dashboard.recentBadges.map((userBadge) => {
+                  const BadgeIcon = getBadgeIcon(userBadge.badge.icon);
+
+                  return (
+                    <Badge key={userBadge.id} variant="outline" className="gap-1.5 bg-white">
+                      <BadgeIcon className="h-3.5 w-3.5" aria-hidden="true" />
+                      {userBadge.badge.title}
+                    </Badge>
+                  );
+                })
               ) : (
-                <p className="text-sm text-slate-600">Nenhuma conquista registrada ainda.</p>
+                <p className="text-sm text-slate-600">Suas próximas conquistas aparecem aqui conforme você avança.</p>
               )}
             </CardContent>
           </Card>
@@ -112,9 +132,9 @@ export default async function StudentAppPage() {
             <CardHeader>
               <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                 <div>
-                  <CardTitle>Simulado recomendado</CardTitle>
+                  <CardTitle>Próximo simulado sugerido</CardTitle>
                   <p className="mt-2 text-sm text-slate-600">
-                    Pratique com resultado salvo e revisões geradas a partir dos erros.
+                    Pratique com resultado salvo e revise os pontos que aparecerem como dificuldade.
                   </p>
                 </div>
                 <Link
@@ -126,10 +146,12 @@ export default async function StudentAppPage() {
               </div>
             </CardHeader>
             <CardContent className="grid gap-5 lg:grid-cols-[1fr_1fr]">
-              <div className="rounded-lg bg-emerald-50 p-4">
+              <div className="rounded-lg border border-emerald-100 bg-emerald-50 p-4">
                 {dashboard.recommendedSimulation ? (
                   <div className="space-y-3">
-                    <Badge variant="secondary">{dashboard.recommendedSimulation.type}</Badge>
+                    <Badge variant="secondary">
+                      {getSimulationTypeLabel(dashboard.recommendedSimulation.type)}
+                    </Badge>
                     <h2 className="text-xl font-bold text-emerald-950">
                       {dashboard.recommendedSimulation.title}
                     </h2>
@@ -138,13 +160,13 @@ export default async function StudentAppPage() {
                     </p>
                     <Link
                       href={`/app/simulados/${dashboard.recommendedSimulation.id}`}
-                      className="inline-flex h-10 items-center justify-center rounded-md bg-emerald-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-emerald-800"
+                      className="inline-flex h-10 items-center justify-center rounded-md bg-emerald-700 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-emerald-900/20 transition-colors hover:bg-emerald-800"
                     >
                       Iniciar prática
                     </Link>
                   </div>
                 ) : (
-                  <p className="text-sm text-emerald-950">Nenhum simulado cadastrado no banco.</p>
+                  <p className="text-sm text-emerald-950">Nenhum simulado cadastrado no banco por enquanto.</p>
                 )}
               </div>
               <div className="rounded-lg border bg-white p-4">
@@ -162,14 +184,17 @@ export default async function StudentAppPage() {
                     {latestWeakSkills.length > 0 ? (
                       <div className="space-y-2">
                         <p className="text-sm font-semibold text-amber-700">Pontos fracos recentes</p>
-                        {latestWeakSkills.slice(0, 3).map((skill) => (
-                          <p key={skill.key} className="rounded-md bg-amber-50 px-3 py-2 text-sm text-amber-950">
-                            {skill.label} · {skill.accuracy}%
+                        {latestWeakSkills.slice(0, 3).map((skill, index) => (
+                          <p
+                            key={`${getSkillDisplayName(skill)}-${index}`}
+                            className="rounded-md bg-amber-50 px-3 py-2 text-sm text-amber-950"
+                          >
+                            {getSkillDisplayName(skill)} · {skill.accuracy}%
                           </p>
                         ))}
                       </div>
                     ) : (
-                      <p className="text-sm text-slate-600">Sem ponto fraco registrado no último simulado.</p>
+                      <p className="text-sm text-slate-600">Nenhum ponto crítico apareceu no último simulado.</p>
                     )}
                   </div>
                 ) : (
@@ -191,7 +216,7 @@ export default async function StudentAppPage() {
           </div>
           <div className="grid gap-4 md:grid-cols-2">
             {dashboard.tracks.map(({ enrollment, summary }) => (
-              <Card key={enrollment.id}>
+              <Card key={enrollment.id} className="h-full">
                 <CardHeader>
                   <CardTitle>{summary.title}</CardTitle>
                 </CardHeader>
@@ -205,7 +230,7 @@ export default async function StudentAppPage() {
                     href={`/app/trilhas/${summary.slug}`}
                     className="inline-flex h-10 items-center justify-center rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-50"
                   >
-                    Continuar
+                    Continuar estudando
                   </Link>
                 </CardContent>
               </Card>
@@ -215,7 +240,7 @@ export default async function StudentAppPage() {
 
         <section>
           <div className="mb-4 flex items-center justify-between gap-3">
-            <h2 className="text-2xl font-bold text-slate-950">Revisões pendentes</h2>
+            <h2 className="text-2xl font-bold text-slate-950">Revisões que merecem atenção</h2>
             <Link href="/app/revisoes" className="text-sm font-semibold text-emerald-700 hover:text-emerald-800">
               Ver todas
             </Link>
@@ -225,4 +250,16 @@ export default async function StudentAppPage() {
       </div>
     </ProtectedShell>
   );
+}
+
+function getBadgeIcon(icon: string) {
+  const icons = {
+    "calendar-check": CalendarCheck,
+    "clipboard-check": ClipboardCheck,
+    flame: Flame,
+    sparkle: Sparkles,
+    "trending-up": TrendingUp
+  };
+
+  return icons[icon as keyof typeof icons] ?? Trophy;
 }

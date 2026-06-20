@@ -28,14 +28,14 @@ export function ExplanationTabs({ sections }: ExplanationTabsProps) {
               "rounded-md border px-3 py-2 text-sm font-semibold transition-colors",
               activeId === section.id
                 ? "border-emerald-700 bg-emerald-700 text-white"
-                : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
+                : "border-slate-200 bg-white text-slate-700 hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-900"
             )}
           >
             {section.label}
           </button>
         ))}
       </div>
-      <div className="rounded-lg border bg-white p-5 text-sm leading-7 text-slate-700">
+      <div className="rounded-lg border border-slate-200 bg-white p-5 text-sm leading-7 text-slate-700 shadow-sm shadow-slate-950/[0.03]">
         {activeSection?.content}
       </div>
     </div>

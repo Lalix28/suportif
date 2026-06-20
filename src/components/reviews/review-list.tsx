@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { formatReviewDueText, getReviewStatusLabel } from "@/lib/simulations/presentation";
 import { completeReviewAction } from "@/server/actions/student";
 
 type ReviewListProps = {
@@ -47,9 +48,9 @@ export function ReviewList({ reviews }: ReviewListProps) {
             <div className="space-y-2">
               <div className="flex flex-wrap gap-2">
                 <Badge variant={review.status === "OVERDUE" ? "warning" : "outline"}>
-                  {review.status}
+                  {getReviewStatusLabel(review.status)}
                 </Badge>
-                <Badge variant="secondary">{review.intervalDays} dia(s)</Badge>
+                <Badge variant="secondary">{formatReviewDueText(review.dueAt)}</Badge>
               </div>
               <p className="font-semibold text-slate-950">{review.mission.title}</p>
               <p className="text-sm text-slate-600">
@@ -57,7 +58,7 @@ export function ReviewList({ reviews }: ReviewListProps) {
               </p>
               {review.skill ? <p className="text-sm text-slate-500">{review.skill.name}</p> : null}
               <p className="text-xs font-medium text-slate-500">
-                Vence em {review.dueAt.toLocaleDateString("pt-BR")}
+                {formatReviewDueText(review.dueAt)}
               </p>
             </div>
             <div className="flex flex-col gap-2 sm:flex-row">
@@ -70,7 +71,7 @@ export function ReviewList({ reviews }: ReviewListProps) {
               <form action={completeReviewAction}>
                 <input type="hidden" name="reviewId" value={review.id} />
                 <Button type="submit" variant="secondary">
-                  Marcar feita
+                  Marcar como feita
                 </Button>
               </form>
             </div>

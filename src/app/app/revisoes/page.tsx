@@ -15,9 +15,9 @@ export default async function StudentReviewsPage() {
       <div className="space-y-6">
         <section>
           <Badge variant="secondary">Revisão espaçada simples</Badge>
-          <h1 className="mt-3 text-3xl font-bold text-slate-950">Revisões pendentes</h1>
-          <p className="mt-2 max-w-2xl text-slate-600">
-            Esta lista vem de ReviewSchedule. Ao marcar uma revisão como feita, o banco é atualizado.
+          <h1 className="mt-3 text-3xl font-black text-slate-950">Revisões que merecem atenção</h1>
+          <p className="mt-2 max-w-2xl leading-7 text-slate-600">
+            Retome missões no momento certo. Ao marcar uma revisão como feita, seu progresso é salvo no banco.
           </p>
         </section>
         <ReviewList reviews={reviews} />

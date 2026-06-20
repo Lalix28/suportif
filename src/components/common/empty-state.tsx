@@ -13,8 +13,8 @@ export function EmptyState({ title, description, action }: EmptyStateProps) {
         <div className="flex items-start gap-3">
           <span className="mt-1 h-2.5 w-2.5 rounded-full bg-emerald-600" aria-hidden />
           <div>
-          <p className="font-semibold text-slate-950">{title}</p>
-          <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
+            <p className="font-semibold text-slate-950">{title}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-600">{description}</p>
           </div>
         </div>
         {action}

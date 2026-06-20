@@ -7,7 +7,7 @@ import { EmptyState } from "@/components/common/empty-state";
 import { ProtectedShell } from "@/components/layout/protected-shell";
 import { SimulationForm } from "@/components/simulations/simulation-form";
 import { requireRole } from "@/lib/auth/session";
-import { getBestSimulationScore } from "@/lib/simulations/presentation";
+import { getBestSimulationScore, getSimulationTypeLabel } from "@/lib/simulations/presentation";
 import { getStudentSimulation } from "@/server/queries/simulations";
 
 export const dynamic = "force-dynamic";
@@ -33,8 +33,8 @@ export default async function StudentSimulationPage({ params }: { params: Promis
               Voltar para simulados
             </Link>
             <div className="flex flex-wrap gap-2">
-              <Badge variant="secondary">{simulation.type}</Badge>
-              {simulation.isDemo ? <Badge variant="outline">Demonstrativo</Badge> : null}
+              <Badge variant="secondary">{getSimulationTypeLabel(simulation.type)}</Badge>
+              {simulation.isDemo ? <Badge variant="outline">Conteúdo demonstrativo</Badge> : null}
             </div>
             <h1 className="text-3xl font-bold text-slate-950">{simulation.title}</h1>
             <p className="max-w-3xl text-slate-600">{simulation.description}</p>

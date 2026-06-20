@@ -18,13 +18,13 @@ export function PublicHeader() {
             href="/#open-source"
             className="hidden rounded-md px-3 py-2 text-sm font-semibold text-slate-600 transition-colors hover:bg-emerald-50 hover:text-emerald-900 sm:inline-flex"
           >
-            Open source
+            Código aberto
           </Link>
           <Link
             href="/login"
             className="inline-flex h-10 items-center justify-center rounded-md bg-emerald-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-emerald-800"
           >
-            Entrar
+            Entrar na plataforma
           </Link>
         </nav>
       </div>

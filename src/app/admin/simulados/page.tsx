@@ -9,12 +9,16 @@ import { AdminStatusBadge } from "@/components/admin/admin-status-badge";
 import { Badge } from "@/components/ui/badge";
 import { ProtectedShell } from "@/components/layout/protected-shell";
 import { requireRole } from "@/lib/auth/session";
+import { getSimulationTypeLabel } from "@/lib/simulations/presentation";
 import { saveSimulationAction } from "@/server/actions/admin";
 import { getAdminSimulations } from "@/server/queries/admin";
 
 export const dynamic = "force-dynamic";
 
-const typeOptions = Object.values(SimulationType).map((type) => ({ value: type, label: type }));
+const typeOptions = Object.values(SimulationType).map((type) => ({
+  value: type,
+  label: getSimulationTypeLabel(type)
+}));
 
 export default async function AdminSimulationsPage({
   searchParams
@@ -45,7 +49,7 @@ export default async function AdminSimulationsPage({
                 <p className="font-semibold text-slate-950">{simulation.title}</p>
                 <p className="line-clamp-2 text-xs text-slate-500">{simulation.description}</p>
               </div>,
-              <Badge key="type" variant="outline">{simulation.type}</Badge>,
+              <Badge key="type" variant="outline">{getSimulationTypeLabel(simulation.type)}</Badge>,
               simulation.track?.title ?? simulation.module?.title ?? "Misto",
               simulation._count.questions,
               <AdminStatusBadge key="demo" active={simulation.isDemo} trueLabel="Demo" falseLabel="Real" />,

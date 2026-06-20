@@ -35,7 +35,7 @@ export function ExerciseCard({ id, order, prompt, explanation, options, attempts
   const lastAttempt = attempts[0];
 
   return (
-    <Card>
+    <Card className="bg-white">
       <CardHeader>
         <CardTitle className="text-lg">Exercício {order}</CardTitle>
       </CardHeader>
@@ -50,10 +50,10 @@ export function ExerciseCard({ id, order, prompt, explanation, options, attempts
             {options.map((option) => (
               <label
                 key={option.id}
-                className="flex cursor-pointer items-start gap-3 rounded-md border bg-white p-3 text-sm transition-colors hover:bg-slate-50"
+                className="flex cursor-pointer items-start gap-3 rounded-md border bg-white p-3 text-sm transition-colors hover:border-emerald-200 hover:bg-emerald-50/60"
               >
                 <input
-                  className="mt-1"
+                  className="mt-1 accent-emerald-700"
                   type="radio"
                   name="selectedOptionId"
                   value={option.id}
@@ -70,7 +70,7 @@ export function ExerciseCard({ id, order, prompt, explanation, options, attempts
         {state.status === "success" ? (
           <FeedbackBox
             isCorrect={state.isCorrect}
-            title={state.isCorrect ? "Resposta correta" : "Resposta registrada"}
+            title={state.isCorrect ? "Boa, resposta correta" : "Resposta registrada"}
           >
             <p>{state.feedback}</p>
             <p className="mt-2">
@@ -78,7 +78,7 @@ export function ExerciseCard({ id, order, prompt, explanation, options, attempts
               <strong>{state.totalXp ?? 0}</strong>. Nível: <strong>{state.level ?? 1}</strong>.
             </p>
             <p className="mt-1">Domínio da missão: {state.masteryStatus}</p>
-            {state.reviewCreated ? <p className="mt-1">Uma revisão foi agendada.</p> : null}
+            {state.reviewCreated ? <p className="mt-1">Uma revisão foi agendada para reforçar este ponto.</p> : null}
           </FeedbackBox>
         ) : null}
         {state.status === "error" ? (
