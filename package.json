@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "eslint . --max-warnings=0",
+    "lint": "eslint . --max-warnings=0 --ignore-pattern '.agents/**' --ignore-pattern '.codex/**'",
     "test": "vitest run",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
