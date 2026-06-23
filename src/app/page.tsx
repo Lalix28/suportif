@@ -4,6 +4,7 @@ import { ArrowRight, BookOpenCheck, CheckCircle2, RefreshCw, Route, Sparkles } f
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PublicHeader } from "@/components/layout/public-header";
+import { getLevelLabel, getTrackIcon } from "@/lib/learning/presentation";
 import { prisma } from "@/lib/prisma/client";
 
 export const dynamic = "force-dynamic";
@@ -165,26 +166,35 @@ export default async function HomePage() {
             </p>
           </div>
           <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {tracks.map((track) => (
-              <Card key={track.title} className="group h-full transition-transform hover:-translate-y-0.5 hover:border-emerald-200">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-lg">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-50 text-sm text-emerald-800 ring-1 ring-emerald-100">
-                      {track.coverIcon}
-                    </span>
-                    {track.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline">{track.area}</Badge>
-                    <Badge variant="outline">{track.level}</Badge>
-                    <Badge variant="secondary">{track._count.modules} módulos</Badge>
-                  </div>
-                  <p className="mt-4 text-sm leading-6 text-slate-600">{track.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+            {tracks.map((track) => {
+              const Icon = getTrackIcon(track.coverIcon);
+
+              return (
+                <Card
+                  key={track.title}
+                  className="group h-full transition-transform hover:-translate-y-0.5 hover:border-emerald-200"
+                >
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-3 text-lg">
+                      {Icon ? (
+                        <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-50 text-emerald-800 ring-1 ring-emerald-100">
+                          <Icon className="h-4 w-4" aria-hidden="true" />
+                        </span>
+                      ) : null}
+                      {track.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="outline">{track.area}</Badge>
+                      <Badge variant="outline">{getLevelLabel(track.level)}</Badge>
+                      <Badge variant="secondary">{track._count.modules} módulos</Badge>
+                    </div>
+                    <p className="mt-4 text-sm leading-6 text-slate-600">{track.description}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>

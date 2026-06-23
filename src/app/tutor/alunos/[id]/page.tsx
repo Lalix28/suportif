@@ -140,7 +140,7 @@ export default async function TutorStudentDetailPage({ params }: { params: Promi
                   </div>
                 ))
               ) : (
-                <p className="text-sm text-slate-600">Nenhuma tentativa registrada.</p>
+                <p className="text-sm text-slate-600">Este aluno ainda não registrou tentativas de exercício.</p>
               )}
             </CardContent>
           </Card>

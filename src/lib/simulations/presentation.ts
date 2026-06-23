@@ -90,6 +90,14 @@ export function getSimulationTypeLabel(type: string) {
   return labels[type] ?? formatHumanLabel(type);
 }
 
+export function getSimulationDescriptionText(description: string) {
+  if (description.includes("Estrutura genérica de simulado.")) {
+    return "Simulado demonstrativo para praticar organização de estudos.";
+  }
+
+  return description;
+}
+
 export function getReviewStatusLabel(status: string) {
   const labels: Record<string, string> = {
     OVERDUE: "Atrasada",

@@ -3,6 +3,7 @@ import { CheckCircle2, CircleDotDashed } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { getMasteryStatusLabel } from "@/lib/learning/presentation";
 import { cn } from "@/lib/utils";
 
 type MissionCardProps = {
@@ -48,7 +49,7 @@ export function MissionCard({
             </span>
             <p className="font-semibold text-slate-950">{title}</p>
             <Badge variant={completed ? "default" : "outline"}>
-              {completed ? "Concluída" : masteryStatus}
+              {completed ? "Concluída" : getMasteryStatusLabel(masteryStatus)}
             </Badge>
           </div>
           <p className="max-w-2xl pl-10 text-sm leading-6 text-slate-600 sm:pl-0">{description}</p>

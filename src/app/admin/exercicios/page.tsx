@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { ProtectedShell } from "@/components/layout/protected-shell";
 import { requireRole } from "@/lib/auth/session";
+import { getMissionDifficultyLabel } from "@/lib/learning/presentation";
 import { saveExerciseAction } from "@/server/actions/admin";
 import { getAdminExercises } from "@/server/queries/admin";
 
@@ -17,7 +18,7 @@ export const dynamic = "force-dynamic";
 
 const difficultyOptions = Object.values(MissionDifficulty).map((difficulty) => ({
   value: difficulty,
-  label: difficulty
+  label: getMissionDifficultyLabel(difficulty)
 }));
 
 const typeOptions = Object.values(ExerciseType).map((type) => ({ value: type, label: type }));
@@ -52,7 +53,7 @@ export default async function AdminExercisesPage({
             rows={exercises.map((exercise) => [
               <div key="prompt" className="max-w-sm">
                 <p className="line-clamp-2 font-semibold text-slate-950">{exercise.prompt}</p>
-                <p className="text-xs text-slate-500">{exercise.difficulty}</p>
+                <p className="text-xs text-slate-500">{getMissionDifficultyLabel(exercise.difficulty)}</p>
               </div>,
               <div key="mission">
                 <p className="font-semibold text-slate-700">{exercise.mission.title}</p>

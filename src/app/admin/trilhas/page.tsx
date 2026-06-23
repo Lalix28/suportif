@@ -9,12 +9,13 @@ import { AdminStatusBadge } from "@/components/admin/admin-status-badge";
 import { Badge } from "@/components/ui/badge";
 import { ProtectedShell } from "@/components/layout/protected-shell";
 import { requireRole } from "@/lib/auth/session";
+import { getLevelLabel } from "@/lib/learning/presentation";
 import { saveTrackAction } from "@/server/actions/admin";
 import { getAdminTracks } from "@/server/queries/admin";
 
 export const dynamic = "force-dynamic";
 
-const levelOptions = Object.values(TrackLevel).map((level) => ({ value: level, label: level }));
+const levelOptions = Object.values(TrackLevel).map((level) => ({ value: level, label: getLevelLabel(level) }));
 
 export default async function AdminTracksPage({
   searchParams
@@ -43,7 +44,7 @@ export default async function AdminTracksPage({
                 <p className="text-xs text-slate-500">{track.slug}</p>
               </div>,
               track.area,
-              <Badge key="level" variant="outline">{track.level}</Badge>,
+              <Badge key="level" variant="outline">{getLevelLabel(track.level)}</Badge>,
               <div key="status" className="flex flex-wrap gap-2">
                 <AdminStatusBadge active={track.isPublic} trueLabel="Pública" falseLabel="Privada" />
                 <AdminStatusBadge active={track.isDemo} trueLabel="Demo" falseLabel="Real" />

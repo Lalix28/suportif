@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ProgressBar } from "@/components/dashboard/progress-bar";
+import { getTrackIcon } from "@/lib/learning/presentation";
 
 type TrackCardProps = {
   title: string;
@@ -27,14 +28,18 @@ export function TrackCard({
   href,
   action
 }: TrackCardProps) {
+  const Icon = getTrackIcon(icon);
+
   return (
     <Card className="h-full transition-colors hover:border-emerald-200">
       <CardHeader>
         <div className="flex items-start justify-between gap-3">
           <CardTitle className="flex items-center gap-2 text-lg">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-50 text-sm text-emerald-800 ring-1 ring-emerald-100">
-              {icon}
-            </span>
+            {Icon ? (
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-50 text-emerald-800 ring-1 ring-emerald-100">
+                <Icon className="h-4 w-4" aria-hidden="true" />
+              </span>
+            ) : null}
             {title}
           </CardTitle>
           <Badge variant="outline">{area}</Badge>

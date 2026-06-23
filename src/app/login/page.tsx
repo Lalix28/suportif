@@ -28,8 +28,7 @@ export default async function LoginPage() {
             Entre para continuar sua jornada de estudo.
           </h1>
           <p className="max-w-lg text-lg leading-8 text-slate-600">
-            O acesso usa usuários persistidos no PostgreSQL e direciona cada perfil para a área certa:
-            aluno, tutor ou admin.
+            Use uma conta demonstrativa para acessar a experiência como aluno, tutor ou admin.
           </p>
         </div>
         <Card className="w-full border-emerald-100 bg-white shadow-xl shadow-emerald-900/10">
@@ -39,7 +38,7 @@ export default async function LoginPage() {
             </Badge>
             <CardTitle className="text-2xl">Entrar no ambiente</CardTitle>
             <p className="text-sm leading-6 text-slate-600">
-              Use uma conta local de demonstração ou qualquer usuário cadastrado pelo seed.
+              Use uma das contas demonstrativas abaixo para conhecer a plataforma.
             </p>
           </CardHeader>
           <CardContent className="space-y-6">

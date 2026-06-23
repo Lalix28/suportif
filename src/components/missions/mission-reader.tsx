@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExerciseCard } from "@/components/exercises/exercise-card";
 import { ExplanationTabs } from "@/components/missions/explanation-tabs";
+import { getAttentionPointText, getMissionDifficultyLabel } from "@/lib/learning/presentation";
 
 type MissionReaderProps = {
   mission: {
@@ -45,7 +46,7 @@ export function MissionReader({ mission }: MissionReaderProps) {
       <Card className="border-emerald-100 bg-white">
         <CardHeader>
           <div className="flex flex-wrap gap-2">
-            <Badge>{mission.difficulty}</Badge>
+            <Badge>{getMissionDifficultyLabel(mission.difficulty)}</Badge>
             <Badge variant="secondary" className="gap-1 bg-emerald-50 text-emerald-800">
               <Flame className="h-3.5 w-3.5" /> {mission.xpReward} XP
             </Badge>
@@ -128,7 +129,7 @@ export function MissionReader({ mission }: MissionReaderProps) {
           <ul className="grid gap-2 text-sm leading-6 text-slate-700">
             {mission.attentionPoints.map((point) => (
               <li key={point} className="rounded-md border border-slate-100 bg-slate-50 px-3 py-2">
-                {point}
+                {getAttentionPointText(point)}
               </li>
             ))}
           </ul>

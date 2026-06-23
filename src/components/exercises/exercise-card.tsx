@@ -5,6 +5,7 @@ import { useActionState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FeedbackBox } from "@/components/exercises/feedback-box";
+import { getMasteryStatusLabel } from "@/lib/learning/presentation";
 import {
   answerExerciseAction,
   type ExerciseAnswerState
@@ -77,7 +78,7 @@ export function ExerciseCard({ id, order, prompt, explanation, options, attempts
               XP ganho nesta resposta: <strong>{state.xpAwarded ?? 0}</strong>. XP atual:{" "}
               <strong>{state.totalXp ?? 0}</strong>. Nível: <strong>{state.level ?? 1}</strong>.
             </p>
-            <p className="mt-1">Domínio da missão: {state.masteryStatus}</p>
+            <p className="mt-1">Domínio da missão: {getMasteryStatusLabel(state.masteryStatus)}</p>
             {state.reviewCreated ? <p className="mt-1">Uma revisão foi agendada para reforçar este ponto.</p> : null}
           </FeedbackBox>
         ) : null}

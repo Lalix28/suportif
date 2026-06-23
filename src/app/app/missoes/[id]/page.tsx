@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ProtectedShell } from "@/components/layout/protected-shell";
 import { MissionReader } from "@/components/missions/mission-reader";
 import { requireRole } from "@/lib/auth/session";
+import { getMasteryStatusLabel } from "@/lib/learning/presentation";
 import { getMissionDetail, recordMissionStudy } from "@/server/queries/student";
 
 export const dynamic = "force-dynamic";
@@ -53,7 +54,7 @@ export default async function MissionPage({ params }: { params: Promise<{ id: st
             <Card className="bg-white">
               <CardContent className="grid gap-3 p-4 text-sm text-slate-700 sm:grid-cols-3">
                 <span className="rounded-md bg-slate-50 px-3 py-2">
-                  Domínio: <strong>{progress.masteryStatus}</strong>
+                  Domínio: <strong>{getMasteryStatusLabel(progress.masteryStatus)}</strong>
                 </span>
                 <span className="rounded-md bg-slate-50 px-3 py-2">
                   Tentativas: <strong>{progress.attemptsCount}</strong>

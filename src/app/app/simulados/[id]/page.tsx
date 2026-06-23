@@ -7,7 +7,11 @@ import { EmptyState } from "@/components/common/empty-state";
 import { ProtectedShell } from "@/components/layout/protected-shell";
 import { SimulationForm } from "@/components/simulations/simulation-form";
 import { requireRole } from "@/lib/auth/session";
-import { getBestSimulationScore, getSimulationTypeLabel } from "@/lib/simulations/presentation";
+import {
+  getBestSimulationScore,
+  getSimulationDescriptionText,
+  getSimulationTypeLabel
+} from "@/lib/simulations/presentation";
 import { getStudentSimulation } from "@/server/queries/simulations";
 
 export const dynamic = "force-dynamic";
@@ -37,7 +41,7 @@ export default async function StudentSimulationPage({ params }: { params: Promis
               {simulation.isDemo ? <Badge variant="outline">Conteúdo demonstrativo</Badge> : null}
             </div>
             <h1 className="text-3xl font-bold text-slate-950">{simulation.title}</h1>
-            <p className="max-w-3xl text-slate-600">{simulation.description}</p>
+            <p className="max-w-3xl text-slate-600">{getSimulationDescriptionText(simulation.description)}</p>
           </div>
           <Card>
             <CardContent className="grid gap-3 p-5">

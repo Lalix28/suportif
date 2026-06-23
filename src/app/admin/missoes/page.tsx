@@ -9,6 +9,7 @@ import { AdminStatusBadge } from "@/components/admin/admin-status-badge";
 import { Badge } from "@/components/ui/badge";
 import { ProtectedShell } from "@/components/layout/protected-shell";
 import { requireRole } from "@/lib/auth/session";
+import { getMissionDifficultyLabel } from "@/lib/learning/presentation";
 import { saveMissionAction } from "@/server/actions/admin";
 import { getAdminMissions } from "@/server/queries/admin";
 
@@ -16,7 +17,7 @@ export const dynamic = "force-dynamic";
 
 const difficultyOptions = Object.values(MissionDifficulty).map((difficulty) => ({
   value: difficulty,
-  label: difficulty
+  label: getMissionDifficultyLabel(difficulty)
 }));
 
 export default async function AdminMissionsPage({
@@ -53,7 +54,7 @@ export default async function AdminMissionsPage({
                 <p className="font-semibold text-slate-700">{mission.module.title}</p>
                 <p className="text-xs text-slate-500">{mission.module.track.title}</p>
               </div>,
-              <Badge key="difficulty" variant="outline">{mission.difficulty}</Badge>,
+              <Badge key="difficulty" variant="outline">{getMissionDifficultyLabel(mission.difficulty)}</Badge>,
               mission.xpReward,
               `${mission.estimatedMinutes} min`,
               <AdminStatusBadge key="demo" active={mission.isDemo} trueLabel="Demo" falseLabel="Real" />,

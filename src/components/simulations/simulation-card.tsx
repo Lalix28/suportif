@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   getBestSimulationScore,
+  getSimulationDescriptionText,
   getSimulationRecommendationStatus,
   getSimulationTypeLabel,
   type SimulationAttemptView
@@ -42,7 +43,7 @@ export function SimulationCard({
         <CardTitle className="text-xl">{title}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-5">
-        <p className="text-sm leading-6 text-slate-600">{description}</p>
+        <p className="text-sm leading-6 text-slate-600">{getSimulationDescriptionText(description)}</p>
         <div className="grid gap-3 sm:grid-cols-3">
           <Metric label="Questões" value={questionCount} />
           <Metric label="Tentativas" value={attempts.length} />
@@ -53,7 +54,7 @@ export function SimulationCard({
           {lastAttempt ? (
             <p>Último resultado: {lastAttempt.score}%</p>
           ) : (
-            <p>Nenhuma tentativa registrada.</p>
+            <p>Você ainda não iniciou este simulado.</p>
           )}
         </div>
         <div className="flex flex-col gap-2 sm:flex-row">
