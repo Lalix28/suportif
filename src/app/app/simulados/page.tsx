@@ -31,7 +31,7 @@ export default async function StudentSimulationsPage() {
             <Badge variant="secondary">Prática com resultado salvo</Badge>
             <h1 className="mt-3 text-3xl font-black text-slate-950">Simulados</h1>
             <p className="mt-2 max-w-2xl leading-7 text-slate-600">
-              Pratique com questões do banco, veja seu resultado e use os pontos de dificuldade para orientar
+              Pratique com questões demonstrativas, veja seu resultado e use os pontos de dificuldade para orientar
               as próximas revisões.
             </p>
           </div>
@@ -61,8 +61,8 @@ export default async function StudentSimulationsPage() {
           </section>
         ) : (
           <EmptyState
-            title="Nenhum simulado cadastrado"
-            description="Quando simulados forem cadastrados no banco, eles aparecerão aqui."
+            title="Novos simulados aparecerão aqui"
+            description="Quando houver uma prática disponível para sua jornada, ela aparecerá nesta área."
           />
         )}
       </div>

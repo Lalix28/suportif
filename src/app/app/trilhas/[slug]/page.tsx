@@ -31,7 +31,7 @@ export default async function TrackMapPage({ params }: { params: Promise<{ slug:
           <div>
             <div className="flex flex-wrap gap-2">
               <Badge variant="secondary">{summary.area}</Badge>
-              <Badge variant="outline">{summary.isDemo ? "Demonstrativa" : "Conteúdo cadastrado"}</Badge>
+              <Badge variant="outline">{summary.isDemo ? "Trilha demonstrativa" : "Trilha disponível"}</Badge>
             </div>
             <h1 className="mt-3 text-3xl font-black text-slate-950">{summary.title}</h1>
             <p className="mt-2 max-w-3xl leading-7 text-slate-600">{summary.description}</p>
@@ -46,7 +46,7 @@ export default async function TrackMapPage({ params }: { params: Promise<{ slug:
                 label={`${summary.completedMissions}/${summary.totalMissions} missões`}
               />
               {enrollment ? (
-                <Badge>Matriculado</Badge>
+                <Badge>Na sua jornada</Badge>
               ) : (
                 <form action={startTrackAction}>
                   <input type="hidden" name="trackId" value={summary.id} />

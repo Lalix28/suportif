@@ -50,32 +50,17 @@ export default async function StudentAppPage() {
             href="/app/trilhas"
             className="inline-flex h-10 items-center justify-center rounded-md bg-emerald-700 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-emerald-900/20 transition-colors hover:bg-emerald-800"
           >
-            Ver trilhas
+            Ver minhas trilhas
           </Link>
         </section>
 
-        <section className="grid gap-4 md:grid-cols-4">
-          <DashboardCard title="XP acumulado" value={user.profile?.totalXp ?? 0} description="Registrado no seu perfil." />
-          <DashboardCard title="Nível atual" value={user.profile?.level ?? 1} description="Calculado pelo XP." />
-          <DashboardCard
-            title="Progresso geral"
-            value={`${dashboard.progressPercent}%`}
-            description={`${dashboard.completedMissions}/${dashboard.totalMissions} missões concluídas.`}
-          />
-          <DashboardCard
-            title="Revisões ativas"
-            value={dashboard.pendingReviews.length}
-            description="Pendentes ou atrasadas."
-          />
-        </section>
-
-        <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+        <section className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
           <Card className="border-emerald-100 bg-white shadow-md shadow-emerald-950/[0.04]">
             <CardHeader>
               <Badge variant="secondary" className="w-fit bg-emerald-50 text-emerald-800">
-                Continue de onde parou
+                Hoje
               </Badge>
-              <CardTitle>Próximo passo sugerido</CardTitle>
+              <CardTitle>Seu próximo passo</CardTitle>
             </CardHeader>
             <CardContent>
               {dashboard.nextStep ? (
@@ -88,6 +73,9 @@ export default async function StudentAppPage() {
                     <p className="mt-2 text-sm leading-6 text-slate-600">
                       {dashboard.nextStep.shortDescription}
                     </p>
+                    <p className="mt-2 text-sm font-medium text-emerald-800">
+                      Recomendado para manter sua trilha em movimento.
+                    </p>
                   </div>
                   <Link
                     href={`/app/missoes/${dashboard.nextStep.id}`}
@@ -97,15 +85,26 @@ export default async function StudentAppPage() {
                   </Link>
                 </div>
               ) : (
-                <p className="text-sm text-slate-600">
-                  Nenhuma próxima missão encontrada. Inicie uma trilha pública para abrir sua jornada.
-                </p>
+                <div className="space-y-4">
+                  <p className="text-sm leading-6 text-slate-600">
+                    Escolha uma trilha para abrir seu caminho de estudo e receber uma próxima missão.
+                  </p>
+                  <Link
+                    href="/app/trilhas"
+                    className="inline-flex h-10 items-center justify-center rounded-md bg-emerald-700 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-emerald-900/20 transition-colors hover:bg-emerald-800"
+                  >
+                    Escolher trilha
+                  </Link>
+                </div>
               )}
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
+              <Badge variant="secondary" className="w-fit">
+                Depois
+              </Badge>
               <CardTitle>Conquistas recentes</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
@@ -127,11 +126,29 @@ export default async function StudentAppPage() {
           </Card>
         </section>
 
+        <section className="grid gap-4 md:grid-cols-4">
+          <DashboardCard title="XP acumulado" value={user.profile?.totalXp ?? 0} description="Seu avanço acumulado." />
+          <DashboardCard title="Nível atual" value={user.profile?.level ?? 1} description="Você está neste nível." />
+          <DashboardCard
+            title="Progresso geral"
+            value={`${dashboard.progressPercent}%`}
+            description={`${dashboard.completedMissions}/${dashboard.totalMissions} missões concluídas.`}
+          />
+          <DashboardCard
+            title="Revisões ativas"
+            value={dashboard.pendingReviews.length}
+            description="Para revisar hoje ou em breve."
+          />
+        </section>
+
         <section>
           <Card className="border-emerald-100">
             <CardHeader>
               <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                 <div>
+                  <Badge variant="secondary" className="mb-3 w-fit bg-emerald-50 text-emerald-800">
+                    Para praticar
+                  </Badge>
                   <CardTitle>Próximo simulado sugerido</CardTitle>
                   <p className="mt-2 text-sm text-slate-600">
                     Pratique com resultado salvo e revise os pontos que aparecerem como dificuldade.
@@ -166,7 +183,7 @@ export default async function StudentAppPage() {
                     </Link>
                   </div>
                 ) : (
-                  <p className="text-sm text-emerald-950">Nenhum simulado cadastrado no banco por enquanto.</p>
+                  <p className="text-sm text-emerald-950">Novos simulados aparecerão aqui.</p>
                 )}
               </div>
               <div className="rounded-lg border bg-white p-4">
@@ -211,7 +228,7 @@ export default async function StudentAppPage() {
           <div className="mb-4 flex items-center justify-between gap-3">
             <h2 className="text-2xl font-bold text-slate-950">Trilhas em andamento</h2>
             <Link href="/app/trilhas" className="text-sm font-semibold text-emerald-700 hover:text-emerald-800">
-              Gerenciar trilhas
+              Ver minhas trilhas
             </Link>
           </div>
           <div className="grid gap-4 md:grid-cols-2">

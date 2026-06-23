@@ -32,7 +32,7 @@ export default async function ModulePage({ params }: { params: Promise<{ id: str
           </Link>
           <div className="flex flex-wrap gap-2">
             <Badge variant="secondary">{detail.module.track.title}</Badge>
-            <Badge variant="outline">{detail.enrollment ? "Matriculado" : "Trilha pública"}</Badge>
+            <Badge variant="outline">{detail.enrollment ? "Na sua jornada" : "Trilha disponível"}</Badge>
           </div>
           <h1 className="text-3xl font-bold text-slate-950">{detail.module.title}</h1>
           <p className="max-w-3xl text-slate-600">{detail.module.description}</p>

@@ -67,7 +67,7 @@ export default async function HomePage() {
                 <Sparkles className="h-3.5 w-3.5" /> Jornada de aprendizado
               </Badge>
               <Badge variant="outline" className="bg-white/80">
-                Dados persistidos no banco
+                Seu progresso fica salvo
               </Badge>
             </div>
             <div className="space-y-4">
@@ -75,7 +75,7 @@ export default async function HomePage() {
                 Trilhas, missões e revisões para estudar com mais direção.
               </h1>
               <p className="max-w-2xl text-lg leading-8 text-slate-700">
-                O SuportIF transforma conteúdos demonstrativos em uma experiência de estudo guiada:
+                O SuportIF transforma trilhas demonstrativas em uma experiência de estudo guiada:
                 avance por etapas curtas, pratique com feedback, revise no momento certo e acompanhe sua evolução.
               </p>
             </div>
@@ -91,11 +91,11 @@ export default async function HomePage() {
                 href="#trilhas"
                 className="inline-flex h-11 items-center justify-center rounded-md border border-emerald-200 bg-white px-5 text-sm font-bold text-emerald-900 transition-colors hover:bg-emerald-50"
               >
-                Ver trilhas demonstrativas
+                Explorar trilhas demonstrativas
               </Link>
             </div>
             <p className="text-sm leading-6 text-slate-500">
-              Conteúdo atual: demonstrativo, fictício e não oficial. Sem integração com sistemas institucionais.
+              Conteúdo demonstrativo, fictício e não oficial.
             </p>
           </div>
 
@@ -160,8 +160,8 @@ export default async function HomePage() {
             </Badge>
             <h2 className="mt-3 text-3xl font-black text-slate-950">Aprendizado organizado por caminhos curtos.</h2>
             <p className="mt-3 leading-7 text-slate-600">
-              As trilhas abaixo vêm do banco e ajudam a demonstrar como conteúdo, progresso e prática se conectam
-              dentro da plataforma.
+              As trilhas abaixo mostram como conteúdo, progresso e prática se conectam em uma rotina de estudo
+              mais clara.
             </p>
           </div>
           <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -199,12 +199,12 @@ export default async function HomePage() {
           <Feature
             icon={<RefreshCw className="h-5 w-5" />}
             title="Revisões e simulados"
-            description={`${reviewCount} revisões agendadas no banco e ${simulationCount} simulados para medir evolução.`}
+            description={`${reviewCount} revisões ajudam a voltar no momento certo e ${simulationCount} simulados apoiam sua prática.`}
           />
           <Feature
             icon={<Route className="h-5 w-5" />}
             title="Progresso visível"
-            description={`${exerciseCount} exercícios demonstrativos alimentam XP, histórico e acompanhamento tutor.`}
+            description={`${exerciseCount} exercícios demonstrativos ajudam a acompanhar XP, histórico e evolução.`}
           />
         </div>
       </section>
@@ -215,16 +215,15 @@ export default async function HomePage() {
             <Badge variant="secondary" className="bg-emerald-50 text-emerald-800">
               Código aberto
             </Badge>
-            <h2 className="mt-3 text-3xl font-black text-slate-950">Aberto por padrão, transparente sobre o estágio atual.</h2>
+            <h2 className="mt-3 text-3xl font-black text-slate-950">Transparente sobre o caráter demonstrativo.</h2>
           </div>
           <div className="space-y-4 text-sm leading-7 text-slate-600">
             <p>
-              O SuportIF usa licença AGPL-3.0 para incentivar colaboração e manter melhorias relevantes disponíveis
-              para a comunidade.
+              O SuportIF é um projeto aberto, pensado para evoluir com colaboração e aprendizado compartilhado.
             </p>
             <p>
-              O conteúdo de apresentação é demonstrativo, fictício e não oficial. A plataforma não importa editais
-              automaticamente, não executa código enviado por usuários e não integra com sistemas institucionais.
+              O conteúdo de apresentação é demonstrativo, fictício e não oficial. Ele existe para mostrar a jornada
+              de estudo dentro da plataforma.
             </p>
             <Link href="/login" className="inline-flex items-center gap-2 font-bold text-emerald-800 hover:text-emerald-900">
               Acessar plataforma

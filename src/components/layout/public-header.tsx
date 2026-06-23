@@ -10,13 +10,13 @@ export function PublicHeader() {
         <nav className="flex items-center gap-2" aria-label="Navegação pública">
           <Link
             href="/#trilhas"
-            className="hidden rounded-md px-3 py-2 text-sm font-semibold text-slate-600 transition-colors hover:bg-emerald-50 hover:text-emerald-900 sm:inline-flex"
+            className="hidden rounded-md px-3 py-2 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 sm:inline-flex"
           >
             Trilhas
           </Link>
           <Link
             href="/#open-source"
-            className="hidden rounded-md px-3 py-2 text-sm font-semibold text-slate-600 transition-colors hover:bg-emerald-50 hover:text-emerald-900 sm:inline-flex"
+            className="hidden rounded-md px-3 py-2 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 sm:inline-flex"
           >
             Código aberto
           </Link>

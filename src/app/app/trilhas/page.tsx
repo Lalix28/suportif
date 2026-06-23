@@ -17,10 +17,10 @@ export default async function StudentTracksPage() {
     <ProtectedShell user={user}>
       <div className="space-y-8">
         <section>
-          <Badge variant="secondary">Trilhas salvas no banco</Badge>
+          <Badge variant="secondary">Caminhos de estudo disponíveis</Badge>
           <h1 className="mt-3 text-3xl font-black text-slate-950">Minhas trilhas</h1>
           <p className="mt-2 max-w-2xl leading-7 text-slate-600">
-            Continue o que já começou ou escolha uma nova trilha pública demonstrativa para estudar em etapas.
+            Continue o que já começou ou escolha uma nova trilha demonstrativa para estudar em etapas.
           </p>
         </section>
 
@@ -52,7 +52,7 @@ export default async function StudentTracksPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-2xl font-bold text-slate-950">Trilhas públicas disponíveis</h2>
+          <h2 className="text-2xl font-bold text-slate-950">Para começar depois</h2>
           {availableTracks.length > 0 ? (
             <div className="grid gap-4 lg:grid-cols-2">
               {availableTracks.map((track) => (
@@ -79,7 +79,7 @@ export default async function StudentTracksPage() {
           ) : (
             <Card>
               <CardContent className="p-6 text-sm text-slate-600">
-                Todas as trilhas públicas já estão vinculadas à sua conta.
+                Todas as trilhas disponíveis já fazem parte da sua jornada.
               </CardContent>
             </Card>
           )}

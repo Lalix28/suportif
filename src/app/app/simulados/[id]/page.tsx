@@ -60,8 +60,8 @@ export default async function StudentSimulationPage({ params }: { params: Promis
           <SimulationForm simulationId={simulation.id} questions={simulation.questions} />
         ) : (
           <EmptyState
-            title="Simulado sem questões"
-            description="Este simulado existe no banco, mas ainda não possui questões vinculadas."
+            title="Simulado em preparação"
+            description="As questões desta prática ainda não estão disponíveis."
           />
         )}
       </div>
