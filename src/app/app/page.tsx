@@ -127,8 +127,18 @@ export default async function StudentAppPage() {
         </section>
 
         <section className="grid gap-4 md:grid-cols-4">
-          <DashboardCard title="XP acumulado" value={user.profile?.totalXp ?? 0} description="Seu avanço acumulado." />
-          <DashboardCard title="Nível atual" value={user.profile?.level ?? 1} description="Você está neste nível." />
+          <DashboardCard
+            title="XP acumulado"
+            value={user.profile?.totalXp ?? 0}
+            description="Seu avanço acumulado."
+            className="border-amber-100 bg-amber-50/50"
+          />
+          <DashboardCard
+            title="Nível atual"
+            value={user.profile?.level ?? 1}
+            description="Você está neste nível."
+            className="border-emerald-100 bg-emerald-50/40"
+          />
           <DashboardCard
             title="Progresso geral"
             value={`${dashboard.progressPercent}%`}
@@ -138,6 +148,7 @@ export default async function StudentAppPage() {
             title="Revisões ativas"
             value={dashboard.pendingReviews.length}
             description="Para revisar hoje ou em breve."
+            className={dashboard.pendingReviews.length > 0 ? "border-amber-200 bg-amber-50" : undefined}
           />
         </section>
 

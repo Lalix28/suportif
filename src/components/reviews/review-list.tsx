@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import { formatReviewDueText, getReviewStatusLabel } from "@/lib/simulations/presentation";
 import { completeReviewAction } from "@/server/actions/student";
 
@@ -49,17 +50,25 @@ export function ReviewList({ reviews }: ReviewListProps) {
 
   return (
     <div className="grid gap-3">
-      {reviews.map((review) => (
-        <Card key={review.id}>
+      {reviews.map((review) => {
+        const isOverdue = review.status === "OVERDUE";
+
+        return (
+        <Card
+          key={review.id}
+          className={cn(isOverdue && "border-amber-200 bg-amber-50/60")}
+        >
           <CardContent className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-2">
               <div className="flex flex-wrap gap-2">
-                <Badge variant={review.status === "OVERDUE" ? "warning" : "outline"}>
+                <Badge variant={isOverdue ? "warning" : "outline"}>
                   {getReviewStatusLabel(review.status)}
                 </Badge>
                 <Badge variant="secondary">{formatReviewDueText(review.dueAt)}</Badge>
               </div>
-              <p className="font-semibold text-slate-950">{review.mission.title}</p>
+              <p className={cn("font-semibold", isOverdue ? "text-amber-950" : "text-slate-950")}>
+                {review.mission.title}
+              </p>
               <p className="text-sm text-slate-600">
                 {review.mission.module.track.title} · {review.mission.module.title}
               </p>
@@ -81,7 +90,8 @@ export function ReviewList({ reviews }: ReviewListProps) {
             </div>
           </CardContent>
         </Card>
-      ))}
+        );
+      })}
     </div>
   );
 }
