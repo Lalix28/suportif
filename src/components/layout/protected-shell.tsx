@@ -1,7 +1,11 @@
+"use client";
+
 import type { UserRole } from "@prisma/client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { logoutAction } from "@/server/actions/auth";
 
 const roleLabels: Record<UserRole, string> = {
@@ -41,7 +45,14 @@ type ProtectedShellProps = {
   children: React.ReactNode;
 };
 
+function isNavActive(pathname: string, href: string): boolean {
+  const segments = href.split("/").filter(Boolean);
+  if (segments.length <= 1) return pathname === href;
+  return pathname === href || pathname.startsWith(href + "/");
+}
+
 export function ProtectedShell({ user, children }: ProtectedShellProps) {
+  const pathname = usePathname();
   const accountContext = user.role === "STUDENT" ? "Área do aluno" : `${roleLabels[user.role]} · ${user.email}`;
 
   return (
@@ -56,15 +67,24 @@ export function ProtectedShell({ user, children }: ProtectedShellProps) {
               className="-mx-1 flex max-w-full gap-1 overflow-x-auto px-1 pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0"
               aria-label="Navegação da área protegida"
             >
-              {navByRole[user.role].map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="shrink-0 rounded-md px-3 py-2 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navByRole[user.role].map((item) => {
+                const active = isNavActive(pathname, item.href);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    className={cn(
+                      "shrink-0 rounded-md px-3 py-2 text-sm font-semibold transition-colors",
+                      active
+                        ? "bg-emerald-50 text-emerald-900"
+                        : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
             </nav>
           </div>
           <div

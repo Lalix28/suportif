@@ -20,6 +20,20 @@ import {
 } from "@/lib/simulations/presentation";
 import { getTutorStudentDetail } from "@/server/queries/tutor";
 
+const activityActionLabels: Record<string, string> = {
+  MISSION_OPENED: "Abriu a missão",
+  TRACK_STARTED: "Iniciou a trilha",
+  EXERCISE_CORRECT: "Respondeu corretamente um exercício",
+  EXERCISE_WRONG: "Respondeu incorretamente um exercício",
+  REVIEW_COMPLETED: "Concluiu uma revisão",
+  SIMULATION_SUBMITTED: "Enviou um simulado",
+  TEACHER_NOTE_CREATED: "Observação registrada pelo tutor",
+};
+
+function translateAction(action: string): string {
+  return activityActionLabels[action] ?? action;
+}
+
 export const dynamic = "force-dynamic";
 
 export default async function TutorStudentDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -193,9 +207,9 @@ export default async function TutorStudentDetailPage({ params }: { params: Promi
             {detail.activityLogs.length > 0 ? (
               detail.activityLogs.map((activity) => (
                 <div key={activity.id} className="rounded-md bg-slate-50 px-3 py-2 text-sm">
-                  <p className="font-semibold text-slate-800">{activity.action}</p>
+                  <p className="font-semibold text-slate-800">{translateAction(activity.action)}</p>
                   <p className="text-slate-500">
-                    {activity.entityType} · {activity.createdAt.toLocaleString("pt-BR")}
+                    {activity.createdAt.toLocaleString("pt-BR")}
                   </p>
                 </div>
               ))

@@ -34,7 +34,14 @@ export function ReviewList({ reviews }: ReviewListProps) {
     return (
       <Card>
         <CardContent className="p-6 text-sm text-slate-600">
-          Não há revisões pendentes no momento.
+          <p>Nenhuma revisão pendente por enquanto.</p>
+          <p className="mt-2">
+            Continue estudando suas{" "}
+            <Link href="/app/trilhas" className="font-semibold text-emerald-700 hover:text-emerald-800 underline underline-offset-2">
+              trilhas
+            </Link>{" "}
+            — revisões aparecem aqui quando algum conteúdo precisa ser retomado.
+          </p>
         </CardContent>
       </Card>
     );
@@ -57,9 +64,6 @@ export function ReviewList({ reviews }: ReviewListProps) {
                 {review.mission.module.track.title} · {review.mission.module.title}
               </p>
               {review.skill ? <p className="text-sm text-slate-500">{review.skill.name}</p> : null}
-              <p className="text-xs font-medium text-slate-500">
-                {formatReviewDueText(review.dueAt)}
-              </p>
             </div>
             <div className="flex flex-col gap-2 sm:flex-row">
               <Link
