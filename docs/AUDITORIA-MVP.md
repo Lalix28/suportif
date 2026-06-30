@@ -95,7 +95,7 @@ Este documento resume o que esta implementado de forma real no MVP e o que ainda
 ## O que ainda e placeholder ou simplificado
 
 - Conteudo educacional do seed e demonstrativo, ficticio e nao oficial.
-- Revisao espacada usa regra simples, nao algoritmo avancado.
+- As revisoes geradas por erros sao agendadas para 1 dia. A progressao de intervalos 1/3/7/15 existe como utilitario, mas ainda nao esta integrada ao fluxo de conclusao.
 - Engajamento usa sinais simples do seed e agregacoes basicas.
 - Admin nao possui exclusao destrutiva.
 - Admin nao possui editor rico nem fluxo de publicacao.
@@ -146,6 +146,6 @@ Admin:
 
 1. Login como `admin@suportif.dev`.
 2. Abrir `/admin`.
-3. Abrir paginas de CRUD.
+3. Abrir paginas de cadastro e edicao.
 4. Criar ou editar conteudo demonstrativo.
 5. Confirmar bloqueio de `/admin` para aluno e professor.

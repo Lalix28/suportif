@@ -1,6 +1,6 @@
 # SuportIF
 
-SuportIF é uma plataforma aberta de estudos com trilhas interativas, missões curtas, exercícios guiados, revisões espaçadas, simulados e acompanhamento de progresso.
+SuportIF é uma plataforma aberta de estudos com trilhas interativas, missões curtas, exercícios guiados, revisões agendadas após erros, simulados e acompanhamento de progresso.
 
 O MVP atual entrega um fluxo funcional ponta a ponta: aluno estuda e responde exercícios, tentativas são salvas, progresso/XP/revisões são atualizados, simulados geram resultado real, professores acompanham dados de turma e administradores gerenciam conteúdo demonstrativo.
 
@@ -40,7 +40,7 @@ O MVP não executa código enviado por usuário no backend. Exercícios de progr
 - Revisões pendentes com ação real para marcar como feita.
 - Simulados com envio real de respostas, resultado salvo, pontos fortes/fracos, revisões e XP com dedupe.
 - Painel tutor com turmas, alunos, progresso, revisões, simulados, dificuldades, sinais de engajamento e observações.
-- Admin básico com CRUD real para trilhas, módulos, missões, exercícios/alternativas, simulados e badges.
+- Admin básico com consulta, criação e edição de trilhas, módulos, missões, exercícios/alternativas, simulados e badges.
 - Seed demonstrativo com usuários, turma, trilhas, módulos, missões, exercícios, badges, progresso, revisões, simulados e sinais de engajamento.
 
 ## Fora do MVP
@@ -49,7 +49,7 @@ O MVP não executa código enviado por usuário no backend. Exercícios de progr
 - Execução real de código no backend.
 - Integrações com sistemas oficiais.
 - Importação automática de edital/PDF.
-- CRUD admin avançado com exclusão destrutiva.
+- Exclusão destrutiva das entidades principais pelo admin.
 - Editor rico de conteúdo.
 - Ranking, chat, notificações, marketplace e app mobile nativo.
 - Analytics avançado.
@@ -151,7 +151,7 @@ Admin:
 
 1. Entre como `admin@suportif.dev`.
 2. Abra `/admin`.
-3. Abra as áreas de CRUD.
+3. Abra as áreas de cadastro e edição.
 4. Crie ou edite conteúdo demonstrativo.
 5. Confirme que professor e aluno não acessam `/admin`.
 
